@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Rectangle2", "Rectangle2.pyproj", "{C518FB08-9549-4B65-A336-40EB052BD36B}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Rectangle", "Rectangle.pyproj", "{FB8B6E98-E7DF-4D47-90A0-D30772822503}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C518FB08-9549-4B65-A336-40EB052BD36B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C518FB08-9549-4B65-A336-40EB052BD36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8B6E98-E7DF-4D47-90A0-D30772822503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8B6E98-E7DF-4D47-90A0-D30772822503}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D08C1DA1-D3B1-471A-912F-380010E2008E}
+		SolutionGuid = {B376EAF4-BCCE-446B-BDCB-64FC6144C580}
 	EndGlobalSection
 EndGlobal

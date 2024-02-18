@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>c518fb08-9549-4b65-a336-40eb052bd36b</ProjectGuid>
+    <ProjectGuid>fb8b6e98-e7df-4d47-90a0-d30772822503</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Rectangle2.py</StartupFile>
+    <StartupFile>Rectangle.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Rectangle2</Name>
-    <RootNamespace>Rectangle2</RootNamespace>
+    <Name>Rectangle</Name>
+    <RootNamespace>Rectangle</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Rectangle2.py" />
+    <Compile Include="Rectangle.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
