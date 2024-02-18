@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Rectangle/Rectangle.py
+/Rectangle/Rectangle.sln
+/Rectangle/.vs/Rectangle/FileContentIndex/570240c1-9105-4c9c-8680-f0dbfc1a17d9.vsidx
+/Rectangle/.vs/Rectangle/v17/.suo
+/Rectangle/Rectangle.py
+/Rectangle/Rectangle.pyproj
