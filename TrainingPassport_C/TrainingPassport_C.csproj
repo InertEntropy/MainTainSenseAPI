@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="sqlite3.dll" />
+    <Content Include="ChatSaveGemini.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
