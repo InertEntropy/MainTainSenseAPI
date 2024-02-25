@@ -136,6 +136,32 @@ namespace SupervisorsDashboard
                 }
             }
         }
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"SELECT u.UserID, u.UserName, u.IsAdmin, u.IsDefaultAdmin, 
+                                u.IsEnabled, r.RoleName 
+                         FROM Users u JOIN Roles r ON u.RolesId = r.RoleId";
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    User user = new User();
+                    user.UserID = Convert.ToInt32(reader["UserID"]);
+                    user.UserName = reader["UserName"].ToString();
+                    user.IsAdmin = Convert.ToBoolean(reader["ISAdmin"]);
+                    user.IsDefaultAdmin = Convert.ToBoolean(reader["IsDefaultAdmin"]);
+                    user.IsEnabled = Convert.ToBoolean(reader["IsEnabled"]);
+                    user.Role = (UserRole)Enum.Parse(typeof(UserRole), reader["RoleName"].ToString());
+                }
+            }
+            return users;
+        }
     }
 }
 
