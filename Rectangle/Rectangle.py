@@ -12,12 +12,10 @@ class Rectangle:
     def print_rectangle(self):
         # Print top row
         print("* " * self.width)
-
         # Print middle rows with spaces
         for _ in range(self.height - 2):
             print("*" + " " * (self.width * 2 - 3) + "*")
-
-        # Print bottom row  again
+        # Print bottom row 
         print("* " * self.width)
 
 def main():
@@ -38,7 +36,7 @@ def main():
         print("Area:\t  ", rectangle.area())
         rectangle.print_rectangle()
 
-        # Ask if the user wants to continue or not
+        # Ask if the user wants to continue
         continue_choice = input("\nContinue (y/n)? ")
         print()
         if continue_choice.lower() != 'y':
