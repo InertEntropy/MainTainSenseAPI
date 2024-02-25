@@ -12,22 +12,29 @@ namespace SupervisorsDashboard
 {
     public partial class frmManageUsers : Form
     {
+        // Form-level variables
+        private UserDal userDal = new UserDal();
+
+        // Constructor
         public frmManageUsers()
         {
             InitializeComponent();
-            
-         }   
-    }
-    private UserDal userNewDal = new UserDal();
-    private void frmManageUsers_Load(object sender, EventArgs e)
-    {
-        LoadUserData();
-    }
-    private void LoadUserData()
-    {
-        // Placeholder for now:
-        List<User> users = userDal.GetAllUsers();  // You'll need to implement this in UserDAL
-        dgvUsers.DataSource = users;
-    }
+            dgvUsers.DataSource = userDal.GetAllUsers();
+        }
 
+        // Event handlers
+        private void frmManageUsers_Load(object sender, EventArgs e)
+        {
+            LoadUserData();
+        }
+
+        // Other event handlers (e.g., button clicks)
+
+        // Helper functions
+        private void LoadUserData()
+        {
+            List<User> users = userDal.GetAllUsers();
+            dgvUsers.DataSource = users;
+        }
+    }
 }
