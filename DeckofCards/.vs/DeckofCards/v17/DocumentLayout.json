@@ -1,0 +1,49 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\DeckofCards\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BC5BCBF2-8B75-4707-80B4-A5EFFC8AFC54}|DeckofCards.pyproj|C:\\Users\\jamie\\source\\repos\\DeckofCards\\DeckofCards.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BC5BCBF2-8B75-4707-80B4-A5EFFC8AFC54}|DeckofCards.pyproj|solutionrelative:DeckofCards.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DeckofCards.py",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\DeckofCards\\DeckofCards.py",
+              "RelativeDocumentMoniker": "DeckofCards.py",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\DeckofCards\\DeckofCards.py",
+              "RelativeToolTip": "DeckofCards.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-02-25T10:44:13.558Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
