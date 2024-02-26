@@ -33,6 +33,7 @@
             this.lblPolarisLocation = new System.Windows.Forms.Label();
             this.lblMainCopyPolarisLocation = new System.Windows.Forms.Label();
             this.lblMainPolarisLocation = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSettings
@@ -86,12 +87,22 @@
             this.lblMainPolarisLocation.TabIndex = 4;
             this.lblMainPolarisLocation.Text = "Polaris Location";
             // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(231, 11);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(56, 18);
+            this.lblWelcome.TabIndex = 6;
+            this.lblWelcome.Text = "label1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(892, 623);
+            this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.lblMainCopyPolarisLocation);
             this.Controls.Add(this.lblMainPolarisLocation);
             this.Controls.Add(this.lblPolarisCopylocation);
@@ -114,6 +125,7 @@
         private System.Windows.Forms.Label lblPolarisLocation;
         private System.Windows.Forms.Label lblMainCopyPolarisLocation;
         private System.Windows.Forms.Label lblMainPolarisLocation;
+        private System.Windows.Forms.Label lblWelcome;
     }
 }
 

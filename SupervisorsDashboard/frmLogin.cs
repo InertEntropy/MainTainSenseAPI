@@ -43,5 +43,10 @@ namespace SupervisorsDashboard
             }
             // else – default admin login was cancelled or failed; no need to do anything here
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

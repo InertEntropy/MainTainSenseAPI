@@ -30,3 +30,4 @@ C:\Users\jamie\source\repos\SupervisorsDashboard\obj\Debug\SupervisorsDashboard.
 C:\Users\jamie\source\repos\SupervisorsDashboard\obj\Debug\SupervisorsDashboard.pdb
 C:\Users\jamie\source\repos\SupervisorsDashboard\obj\Debug\SupervisorsDashboard.frmDefaultAdminLogin.resources
 C:\Users\jamie\source\repos\SupervisorsDashboard\obj\Debug\SupervisorsDashboard.frmLogin.resources
+C:\Users\jamie\source\repos\SupervisorsDashboard\obj\Debug\SupervisorsDashboard.frmManageUsers.resources
