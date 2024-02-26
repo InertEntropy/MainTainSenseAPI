@@ -42,17 +42,7 @@ namespace SupervisorsDashboard
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-        //    if (IsUserAdmin()) // Implement the IsUserAdmin function 
-        //   {
-        //        Properties.Settings.Default.PolarisPath = txtPolarisPath.Text;
-        //        Properties.Settings.Default.CopyPolarisPath = txtPolarisCopyPath.Text;
-        //        Properties.Settings.Default.Save();
-        //        MessageBox.Show("Settings saved!");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("You do not have permissions to modify these settings.");
-        //    }
+
         }
         public string PolarisPath
         {
