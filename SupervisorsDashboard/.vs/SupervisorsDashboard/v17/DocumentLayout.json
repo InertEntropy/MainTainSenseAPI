@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\supervisorsdashboard\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\supervisorsdashboard\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:frmsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{238FCA0C-48EC-4E48-A081-E62785B44B00}|SupervisorsDashboard.csproj|solutionrelative:user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +58,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "frmMain.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmMain.cs",
+              "RelativeDocumentMoniker": "frmMain.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmMain.cs [Design]",
+              "RelativeToolTip": "frmMain.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-26T03:38:23.72Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmSettings.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmSettings.cs",
+              "RelativeDocumentMoniker": "frmSettings.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmSettings.cs [Design]",
+              "RelativeToolTip": "frmSettings.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-26T03:37:31.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\User.cs",
               "RelativeDocumentMoniker": "User.cs",
@@ -62,16 +93,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "frmManageUsers.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmManageUsers.cs",
               "RelativeDocumentMoniker": "frmManageUsers.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmManageUsers.cs",
               "RelativeToolTip": "frmManageUsers.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAACcAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-25T21:38:32.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-25T21:38:32.804Z"
             },
             {
               "$type": "Document",
@@ -82,37 +112,36 @@
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmManageUsers.cs [Design]",
               "RelativeToolTip": "frmManageUsers.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-25T21:29:54.991Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-02-25T21:29:54.991Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UserDAL.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\UserDAL.cs",
               "RelativeDocumentMoniker": "UserDAL.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\UserDAL.cs",
               "RelativeToolTip": "UserDAL.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJwAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-25T16:51:20.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-25T16:51:20.754Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "frmMain.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmMain.cs",
               "RelativeToolTip": "frmMain.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-25T15:37:15.42Z"
+              "WhenOpened": "2024-02-25T15:37:15.42Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "frmSettings.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\SupervisorsDashboard\\frmSettings.cs",
               "RelativeDocumentMoniker": "frmSettings.cs",
