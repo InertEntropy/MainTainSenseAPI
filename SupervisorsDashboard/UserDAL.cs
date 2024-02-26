@@ -13,8 +13,8 @@ namespace SupervisorsDashboard
 {
     public class UserDal
     {
-        private string appDataPath;
-        private string connectionString;
+        private readonly string appDataPath;
+        private readonly string connectionString;
         public enum UserRole { Admin, Supervisor, LeadOperator, Other, Unauthorized }
 
         public UserDal() // Constructor
