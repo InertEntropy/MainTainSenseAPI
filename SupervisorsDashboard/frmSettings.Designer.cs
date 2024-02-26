@@ -61,19 +61,19 @@
             // 
             this.txtPolarisPath.Location = new System.Drawing.Point(208, 17);
             this.txtPolarisPath.Name = "txtPolarisPath";
-            this.txtPolarisPath.Size = new System.Drawing.Size(343, 26);
+            this.txtPolarisPath.Size = new System.Drawing.Size(706, 26);
             this.txtPolarisPath.TabIndex = 2;
             // 
             // txtPolarisCopyPath
             // 
             this.txtPolarisCopyPath.Location = new System.Drawing.Point(208, 51);
             this.txtPolarisCopyPath.Name = "txtPolarisCopyPath";
-            this.txtPolarisCopyPath.Size = new System.Drawing.Size(343, 26);
+            this.txtPolarisCopyPath.Size = new System.Drawing.Size(706, 26);
             this.txtPolarisCopyPath.TabIndex = 3;
             // 
             // btnBrowsePolaris
             // 
-            this.btnBrowsePolaris.Location = new System.Drawing.Point(585, 10);
+            this.btnBrowsePolaris.Location = new System.Drawing.Point(920, 10);
             this.btnBrowsePolaris.Name = "btnBrowsePolaris";
             this.btnBrowsePolaris.Size = new System.Drawing.Size(92, 33);
             this.btnBrowsePolaris.TabIndex = 5;
@@ -83,7 +83,7 @@
             // 
             // btnBrowsePolarisCopy
             // 
-            this.btnBrowsePolarisCopy.Location = new System.Drawing.Point(585, 44);
+            this.btnBrowsePolarisCopy.Location = new System.Drawing.Point(920, 44);
             this.btnBrowsePolarisCopy.Name = "btnBrowsePolarisCopy";
             this.btnBrowsePolarisCopy.Size = new System.Drawing.Size(92, 33);
             this.btnBrowsePolarisCopy.TabIndex = 6;
