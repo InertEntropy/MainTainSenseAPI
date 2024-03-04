@@ -14,6 +14,8 @@ namespace SupervisorsDashboard
     public partial class frmMain : Form
     {
         private UserDal userDal = new UserDal();
+        private User user;
+        public bool IsAdmin { get; set; }
 
         public frmMain()
         {
@@ -39,8 +41,7 @@ namespace SupervisorsDashboard
                 currentUserName = currentUserName.Substring(separatorIndex + 1);
             }
 
-            User user = userDal.GetUserByWindowsUsername(currentUserName);
-            MessageBox.Show(currentUserName);
+            user = userDal.GetUserByWindowsUsername(currentUserName);
             if (user != null)
             {
                 lblWelcome.Text = "Welcome, " + user.UserName; // Use the fetched UserName
@@ -50,21 +51,17 @@ namespace SupervisorsDashboard
                 // Handle the case where the user is not found in the database
                 lblWelcome.Text = "Welcome! Please contact an administrator."; // A more generic message
             }
+            btnSettings.Click += (object? s, EventArgs ea) => { btnSettings_Click(s, ea, user); };
+
         }
 
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            frmSettings settingsForm = new frmSettings(Properties.Settings.Default.PolarisPath, Properties.Settings.Default.PolarisPath);
-            settingsForm.ShowDialog();
-            // Load settings if they exist
-            if (!string.IsNullOrEmpty(settingsForm.PolarisPath))
-            {
-                lblMainPolarisLocation.Text = settingsForm.PolarisPath;
-            }
-            if (!string.IsNullOrEmpty(settingsForm.CopyPolarisPath))
-            {
-                lblMainCopyPolarisLocation.Text = Properties.Settings.Default.PolarisPath;
-            }
-        }
+    }
+
+    private void btnSettings_Click(object sender, EventArgs e, User user)
+    {
+        frmSettings settingsForm = new frmSettings();
+        settingsForm.isAdmin = user.IsAdmin;
+        settingsForm.Show();
     }
 }
+

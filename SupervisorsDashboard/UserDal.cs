@@ -170,7 +170,7 @@ namespace SupervisorsDashboard
             {
                 conn.Open();
                 string query = @"SELECT UserID, UserName, IsAdmin, IsDefaultAdmin, 
-                                IsEnabled, RoleID 
+                                IsEnabled, RoleID, r.RoleName
                          FROM Users u JOIN Roles r ON u.RolesID = r.RoleID
                          WHERE u.UserName = @username";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);

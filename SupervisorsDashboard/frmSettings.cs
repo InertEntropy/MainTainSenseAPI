@@ -12,14 +12,22 @@ namespace SupervisorsDashboard
 {
     public partial class frmSettings : Form
     {
-        public frmSettings(string currentPolarisPath, string currentCopyPolarisPath)
+        public bool isAdmin { get; set; }
+
+
+        public frmSettings()
         {
             InitializeComponent();
-            txtPolarisPath.Text = currentPolarisPath;
-            txtPolarisCopyPath.Text = currentCopyPolarisPath;
 
         }
 
+        private void frmSettings_Load(object sender, EventArgs e)
+        {
+            pnlAdminSettings.Visible = isAdmin;
+            btnBrowsePolaris.Enabled = isAdmin;
+            btnBrowsePolarisCopy.Enabled = isAdmin;
+
+        }
         private void btnBrowsePolaris_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
