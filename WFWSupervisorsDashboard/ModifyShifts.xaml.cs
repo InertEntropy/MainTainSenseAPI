@@ -112,7 +112,60 @@ namespace WFWSupervisorsDashboard
 
         private void UpdateShiftButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Add Update Shift functionality - Coming soon!");
+            if (SelectedShift == null)
+            {
+                MessageBox.Show("Please select a shift to update.");
+                return;
+            }
+
+            try
+            {
+                using (var conn = new SqliteConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"UPDATE Shifts SET 
+                            ShiftName = @shiftName, 
+                            StartTime = @startTime, 
+                            EndTime = @endTime, 
+                            IsActive = @isActive
+                        WHERE ShiftID = @shiftID";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@shiftName", shiftNameTextBox.Text);
+                        cmd.Parameters.AddWithValue("@startTime", startTimeTextBox.Text);
+                        cmd.Parameters.AddWithValue("@endTime", endTimeTextBox.Text);
+                        cmd.Parameters.AddWithValue("@isActive", isActiveCheckBox.IsChecked.HasValue ? (isActiveCheckBox.IsChecked.Value ? 1 : 0) : 0);
+                        cmd.Parameters.AddWithValue("@shiftID", SelectedShift.ShiftID);
+
+                        int rowsUpdated = cmd.ExecuteNonQuery();
+
+                        if (rowsUpdated > 0)
+                        {
+                            MessageBox.Show("Shift updated successfully!");
+
+                            // Update the in-memory _shifts collection
+                            SelectedShift.ShiftName = shiftNameTextBox.Text;
+                            SelectedShift.StartTime = startTimeTextBox.Text;
+                            SelectedShift.EndTime = endTimeTextBox.Text;
+                            SelectedShift.IsActive = isActiveCheckBox.IsChecked.Value;
+
+                            // Refresh the DataGrid if needed
+                            // shiftsDataGrid.ItemsSource = null;
+                            // shiftsDataGrid.ItemsSource = _shifts;                  
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error updating shift.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating shift: " + ex.Message);
+            }
         }
     }
 }

@@ -93,7 +93,7 @@ namespace WFWSupervisorsDashboard {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WFWSupervisorsDashboard;V1.0.0.0;component/modifyshifts.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WFWSupervisorsDashboard;component/modifyshifts.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ModifyShifts.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\modifyshifts.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:modifyshifts.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\appmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:appmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,15 +74,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Shift.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\Shift.cs",
               "RelativeDocumentMoniker": "Shift.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\Shift.cs",
               "RelativeToolTip": "Shift.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAAAsAAAAWAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAABoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-02T23:08:46.429Z"
+              "WhenOpened": "2024-03-02T23:08:46.429Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -98,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AppManager.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\AppManager.cs",
               "RelativeDocumentMoniker": "AppManager.cs",
@@ -110,20 +111,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ModifyShifts.xaml.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml.cs",
               "RelativeDocumentMoniker": "ModifyShifts.xaml.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml.cs",
               "RelativeToolTip": "ModifyShifts.xaml.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABcAAAAAAAAA",
+              "ViewState": "AQIAAHwAAAAAAAAAAAAAwFgAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-01T22:12:36.61Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ModifyShifts.xaml",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml",
               "RelativeDocumentMoniker": "ModifyShifts.xaml",
