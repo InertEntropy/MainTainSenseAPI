@@ -13,12 +13,6 @@
     <Compile Update="Machines.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ModifyEmployees.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ModifyMachines.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="ModifyShifts.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,12 +28,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ModifyEmployees.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ModifyMachines.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ModifyShifts.xaml">

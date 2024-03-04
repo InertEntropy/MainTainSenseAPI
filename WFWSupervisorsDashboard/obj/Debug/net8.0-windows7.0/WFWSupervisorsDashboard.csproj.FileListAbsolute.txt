@@ -33,8 +33,6 @@ C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\Employees.g.cs
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\Machines.g.cs
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\MainWindow.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyEmployees.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyMachines.g.cs
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyShifts.g.cs
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\SettingsWindow.g.cs
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\App.g.cs
@@ -43,8 +41,6 @@ C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\Employees.baml
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\Machines.baml
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\MainWindow.baml
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyEmployees.baml
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyMachines.baml
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyShifts.baml
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\SettingsWindow.baml
 C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\WFWSupervisorsDashboard.g.resources

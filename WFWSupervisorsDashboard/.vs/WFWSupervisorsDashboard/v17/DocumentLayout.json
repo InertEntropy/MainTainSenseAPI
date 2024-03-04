@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\modifyshifts.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:modifyshifts.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\modifyshifts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:modifyshifts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\settingswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:settingswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\settingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:settingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|c:\\users\\jamie\\source\\repos\\wfwsupervisorsdashboard\\settingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{21DE5033-5254-4A02-B931-8F836597E9A5}|WFWSupervisorsDashboard.csproj|solutionrelative:settingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,54 +39,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ModifyShifts.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml.cs",
-              "RelativeDocumentMoniker": "ModifyShifts.xaml.cs",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml.cs",
-              "RelativeToolTip": "ModifyShifts.xaml.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAswJwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-01T22:12:36.61Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ModifyShifts.xaml",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml",
-              "RelativeDocumentMoniker": "ModifyShifts.xaml",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\ModifyShifts.xaml",
-              "RelativeToolTip": "ModifyShifts.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-01T22:12:33.818Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "SettingsWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\SettingsWindow.xaml.cs",
               "RelativeDocumentMoniker": "SettingsWindow.xaml.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\SettingsWindow.xaml.cs",
               "RelativeToolTip": "SettingsWindow.xaml.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACEAAAAMAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAcwCUAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-29T08:53:20.014Z"
+              "WhenOpened": "2024-02-29T08:53:20.014Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "SettingsWindow.xaml",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\SettingsWindow.xaml",
               "RelativeDocumentMoniker": "SettingsWindow.xaml",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\SettingsWindow.xaml",
               "RelativeToolTip": "SettingsWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-02-29T08:39:17.218Z"
+              "WhenOpened": "2024-02-29T08:39:17.218Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -105,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\WFWSupervisorsDashboard\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",

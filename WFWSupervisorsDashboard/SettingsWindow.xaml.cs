@@ -32,29 +32,16 @@ namespace WFWSupervisorsDashboard
             DataContext = this;
             AppManager.LoadSettings();
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
-            // Show admin settings if the role is Admin
-            if (_userRole == "Admin")
-            {
-                adminSettingsPanel.Visibility = Visibility.Visible;
-                supervisorSettingsPanel.Visibility = Visibility.Visible; // Show for admins
-            }
-            else if (_userRole == "Supervisor")
-            {
-                supervisorSettingsPanel.Visibility = Visibility.Visible; // Show for supervisors
-            }
+        }
+        private void UpdateEmployeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Comin soon");
+        }
+        private void UpdateMachinesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Comin soon");
         }
 
-        private void ModifyEmployeesButton_Click(object sender, RoutedEventArgs e)
-        {
-            var modifyEmployees = new ModifyEmployees(); 
-            modifyEmployees.Show();
-        }
-        private void ModifyMachinesButton_Click(object sender, RoutedEventArgs e)
-        {
-            var modifyMachines = new ModifyMachines(); 
-            modifyMachines.Show();
-        }
         private void ModifyShiftsButton_Click(object sender, RoutedEventArgs e)
         {
             var modifyShifts = new ModifyShifts();
@@ -63,11 +50,11 @@ namespace WFWSupervisorsDashboard
         }
         private void FutureButton1_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Comin soon");
         }
         private void FutureButton2_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Comin soon");
         }
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -107,5 +94,7 @@ namespace WFWSupervisorsDashboard
                 Settings.DatabaseConnectionString = openFileDialog.FileName; // Update the setting 
             }
         }
+
+
     }
 }
