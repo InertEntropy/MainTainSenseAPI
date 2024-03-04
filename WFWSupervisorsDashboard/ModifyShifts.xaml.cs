@@ -102,13 +102,106 @@ namespace WFWSupervisorsDashboard
 
         private void DeleteShiftButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Delete Shift functionality - Coming soon!");
+            if (SelectedShift == null)
+            {
+                MessageBox.Show("Please select a shift to delete.");
+                return;
+            }
+
+            // Show confirmation dialog
+            MessageBoxResult result = MessageBox.Show(
+                $"Are you sure you want to delete shift '{SelectedShift.ShiftName}'?",
+                "Confirm Delete",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    using (var conn = new SqliteConnection(_connectionString))
+                    {
+                        conn.Open();
+
+                        string sql = @"DELETE FROM Shifts WHERE ShiftID = @shiftID";
+
+                        using (var cmd = new SqliteCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@shiftID", SelectedShift.ShiftID);
+                            int rowsDeleted = cmd.ExecuteNonQuery();
+
+                            if (rowsDeleted > 0)
+                            {
+                                MessageBox.Show("Shift deleted successfully!");
+
+                                // Remove the shift from the _shifts collection
+                                _shifts.Remove(SelectedShift);
+
+                                // Optionally: Refresh the DataGrid
+                                // shiftsDataGrid.ItemsSource = null; 
+                                // shiftsDataGrid.ItemsSource = _shifts;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error deleting shift.");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting shift: " + ex.Message);
+                }
+            }
         }
+
 
         private void AddNewShiftButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Add New Shift functionality - Coming soon!");
+            try
+            {
+                using (var conn = new SqliteConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"INSERT INTO Shifts 
+                              (ShiftName, StartTime, EndTime, IsActive) 
+                           VALUES 
+                              (@shiftName, @startTime, @endTime, @isActive)";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@shiftName", shiftNameTextBox.Text);
+                        cmd.Parameters.AddWithValue("@startTime", startTimeTextBox.Text);
+                        cmd.Parameters.AddWithValue("@endTime", endTimeTextBox.Text);
+                        cmd.Parameters.AddWithValue("@isActive", isActiveCheckBox.IsChecked.HasValue ? (isActiveCheckBox.IsChecked.Value ? 1 : 0) : 0);
+
+                        int rowsInserted = cmd.ExecuteNonQuery();
+
+                        if (rowsInserted > 0)
+                        {
+                            MessageBox.Show("New Shift added successfully!");
+
+                            // Clear the input fields
+                            shiftNameTextBox.Text = "";
+                            startTimeTextBox.Text = "";
+                            endTimeTextBox.Text = "";
+                            isActiveCheckBox.IsChecked = false;
+                            LoadShifts(); 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error adding shift.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding shift: " + ex.Message);
+            }
         }
+
 
         private void UpdateShiftButton_Click(object sender, RoutedEventArgs e)
         {
