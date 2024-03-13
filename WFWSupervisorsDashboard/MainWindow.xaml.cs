@@ -15,6 +15,8 @@ using System.Diagnostics.Eventing.Reader;
 using System;         
 using System.Data;   
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
+using WFWSupervisorsDashboard.Models;
 
 namespace WFWSupervisorsDashboard
 {
@@ -26,6 +28,9 @@ namespace WFWSupervisorsDashboard
         private string username;
         private string? userRole;
         public AppSettings Settings { get; set; }
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IUserInfoProvider _userInfoProvider;
+        private int userId;
 
         // Properties 
         public string DisplayName
@@ -40,7 +45,7 @@ namespace WFWSupervisorsDashboard
         //Event
         public event PropertyChangedEventHandler? PropertyChanged;
         // Constructor
-        public MainWindow()
+        public MainWindow(IServiceProvider serviceProvider, IUserInfoProvider userInfoProvider)
         {
             InitializeComponent();
             Settings = new AppSettings();
@@ -48,6 +53,8 @@ namespace WFWSupervisorsDashboard
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             DataContext = this;
             _displayName = "";
+            _serviceProvider = serviceProvider;
+            _userInfoProvider = userInfoProvider;
 
             // Get Windows username
             username = Environment.UserName;  // Directly gets the logged-in username
@@ -55,8 +62,12 @@ namespace WFWSupervisorsDashboard
 
             if (isAuthorized)
             {
-                // Load the rest of the application since the user is authorized
-                // ... Your existing logic to load UI components, etc.
+                // Assuming you have your DI setup from earlier examples
+                //IUserInfoProvider _userInfoProvider = (IUserInfoProvider)(Application.Current as App).ServiceProvider.GetService(typeof(IUserInfoProvider));
+
+                // Create MainViewModel instance
+                MainViewModel mainViewModel = new MainViewModel(userInfoProvider, userId);
+
             }
             else
             {
@@ -95,6 +106,10 @@ namespace WFWSupervisorsDashboard
                     DisplayName = reader["DisplayName"].ToString();
                     isEnabledValue = reader.GetInt32("IsEnabled");
                     isAuthorized = isEnabledValue == 1;
+                    userId = reader.GetInt32("UserID");
+                    //Application.Current.Properties["CurrentUserID"] = userId;
+                    //Application.Current.Properties["CurrentUserRole"] = userRole;
+                   // Application.Current.Properties["CurrentDisplayName"] = DisplayName;
                 }
                  return isAuthorized;
             }

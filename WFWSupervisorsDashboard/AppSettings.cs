@@ -9,6 +9,6 @@ namespace WFWSupervisorsDashboard
     public class AppSettings
     {
         public string DatabaseConnectionString { get; set; } =
-             @"Data Source=C:\Users\jamie\source\repos\WFWSupervisorsDashboard\WFWSupDashData.db";
+             @"Data Source=C:\Users\jamie\source\repos\WFWSupervisorsDashboard\Data\WFWSupDashData.db";
     }
 }

@@ -11,7 +11,7 @@ namespace WFWSupervisorsDashboard
     public static class AppManager
     {
         private const string DEFAULT_FILE_PATH =
-            @"Data Source=C:\Users\jamie\source\repos\WFWSupervisorsDashboard\WFWSupDashData.db";
+            @"Data Source=C:\Users\jamie\source\repos\WFWSupervisorsDashboard\Data\WFWSupDashData.db";
 
         public static AppSettings Settings { get; set; } = new AppSettings
         {
