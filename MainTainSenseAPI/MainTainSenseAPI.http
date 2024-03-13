@@ -1,0 +1,6 @@
+@MainTainSenseAPI_HostAddress = http://localhost:5089
+
+GET {{MainTainSenseAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
