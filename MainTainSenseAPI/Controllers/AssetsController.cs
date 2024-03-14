@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; 
-using MainTainSenseAPI.Models;      
+using Microsoft.EntityFrameworkCore;
+using MainTainSenseAPI.Models;
 using Microsoft.AspNetCore.Authorization;
-using Serilog;
-using Serilog.Core;
+using Microsoft.Data.Sqlite;
 
 namespace MainTainSenseAPI.Controllers
 {
@@ -21,23 +20,48 @@ namespace MainTainSenseAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Asset>>> GetAssets()
+        public async Task<ActionResult<IEnumerable<Asset>>> GetAssets(
+            int? assetTypeId,
+            AssetStatus? assetStatus)
         {
-            return await _context.Assets.ToListAsync();
+            var query = _context.Assets.AsQueryable();
+
+            if (assetTypeId.HasValue)
+            {
+                query = query.Where(c => c.AssetTypeId == assetTypeId.Value);
+            }
+
+            if (assetStatus.HasValue)
+            {
+                query = query.Where(c => c.Assetstatus == assetStatus.Value);
+            }
+
+            return await query.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Asset>> GetAssetById(int id)
+        public async Task<ActionResult<Asset>> GetAssetById(
+            int id,
+            int? assetTypeId,
+             AssetStatus? assetStatus)
         {
-            var asset = await _context.Assets
-                                      .Include(a => a.AssetType)
-                                      .FirstOrDefaultAsync(a => a.AssetId == id);
+            var query = _context.Assets.AsQueryable();
 
-            if (asset == null)
+            if (assetTypeId.HasValue)
             {
-                return NotFound();
+                query = query.Where(a => a.AssetTypeId == assetTypeId);
             }
 
+            if (assetStatus.HasValue)
+            {
+                query = query.Where(a => a.Assetstatus == assetStatus);
+            }
+
+            var asset = await query
+                                .Include(a => a.AssetType)
+                                .FirstOrDefaultAsync(a => a.AssetId == id);
+
+            if (asset == null) { return NotFound(); }
             return asset;
         }
 
@@ -92,9 +116,23 @@ namespace MainTainSenseAPI.Controllers
                 };
                 return StatusCode(500, problemDetails);
             }
+            
+            await _context.SaveChangesAsync();
+
             _logger.Information("Create asset with ID {AssetId} from database", asset.AssetId);
 
+            if (asset.AssetType.IsMachine == YesNo.Yes)
+            {
+                var newLocation = new Location
+                {
+                    LocationName = asset.AssetName,
+                    LocationDescription = asset.AssetDescription,
+                };
+                
+                _context.Locations.Add(newLocation);
+            }
 
+            await _context.SaveChangesAsync();
             // (4) Success Response (Best Practice)
             return CreatedAtAction("GetAssets", new { id = asset.AssetId }, asset);
         }
@@ -117,15 +155,51 @@ namespace MainTainSenseAPI.Controllers
 
             // Update properties from asset using a safe approach
             assetToUpdate.AssetName = asset.AssetName;
-            assetToUpdate.AssetLocation = asset.AssetLocation;
+            assetToUpdate.AssetLocationId = asset.AssetLocationId;
             assetToUpdate.Assetstatus = asset.Assetstatus;
            
             try
             {
                 asset.UpdatedBy = CurrentUserName; 
-                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); 
-                await _context.SaveChangesAsync();
+                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM");
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException ex)
+                {
+                    if (ex.InnerException is SqliteException sqliteEx)
+                    {
+                        switch (sqliteEx.ErrorCode)
+                        {
+                            case 19:  // Example: SQLite Constraint Violation
+                                return BadRequest("Cannot update due to related data");
+
+                            case 1:  // Database locked
+                                return StatusCode(503, "Database temporarily busy, please try again");
+
+                            case 6:  //  Cannot open
+                                _logger.Error(sqliteEx, "Failed to open database");
+                                return StatusCode(500, "Database error, contact administrator");
+
+                            case 11:  // Database is corrupt
+                                _logger.Fatal(sqliteEx, "Database corruption detected. Application terminating."); // Use LogFatal for critical errors
+                                return StatusCode(500, "Critical database failure, contact support.");
+
+                            default:
+                                _logger.Error(ex, "SQLite Error");
+                                return StatusCode(500);
+                        }
+                    }
+                    else
+                    {
+                        // Log non-SQL exception
+                        return StatusCode(500);
+                    }
+                }
             }
+
             catch (DbUpdateConcurrencyException) when (!AssetExists(id))
             {
                 return Conflict(new ProblemDetails { Title = "Conflict - Asset has been modified" });

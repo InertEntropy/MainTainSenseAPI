@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
@@ -22,15 +20,13 @@ public partial class Location
 
     public int? ParentLocationId { get; set; }
 
-    public int? IsMachine { get; set; }
-
     public string? UpdatedBy { get; set; }
 
     public string? LastUpdate { get; set; }
 
     public virtual Building? Building { get; set; }
 
-    public virtual ICollection<Location> InverseParentlocation { get; set; } = [];
-
     public virtual Location? ParentLocation { get; set; }
+
+    public virtual ICollection<Location> ChildLocations { get; set; } = [];  // Use a more descriptive name
 }

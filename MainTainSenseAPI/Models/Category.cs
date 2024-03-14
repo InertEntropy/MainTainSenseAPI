@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
@@ -11,7 +9,7 @@ public partial class Category
     [Required]
     public string? CategoryDescription { get; set; }
 
-    public int? IsActive { get; set; }
+    public ActiveStatus IsActive { get; set; }
 
     public string? UpdatedBy { get; set; }
 

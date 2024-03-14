@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
@@ -12,20 +10,12 @@ public partial class Asset
     [Required]
     public int AssetTypeId { get; set; }
 
-    public virtual required AssetType AssetType { get; set; }  // Navigation Property
+    public virtual required AssetType AssetType { get; set; }  
 
     [StringLength(50)]
     public string? Serialnumber { get; set; }
 
-    public string? AssetLocation { get; set; }
-
-    public enum AssetStatus
-    {
-        Active,
-        Retired,
-        InRepair
-        // Add other possible statuses as needed
-    }
+    public int? AssetLocationId { get; set; }
 
     public AssetStatus Assetstatus { get; set; }
 
@@ -42,5 +32,8 @@ public partial class Asset
 
     public string? LastUpdate { get; set; }
 
+    public Location? Location { get; set; }
+
     public virtual ICollection<WorkOrder> WorkOrders { get; set; } = [];
+        
 }

@@ -19,15 +19,30 @@ namespace MainTainSenseAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories(ActiveStatus? isActive) // Optional 'isActive' parameter
         {
-            return await _context.Categories.ToListAsync();
+            var query = _context.Categories.AsQueryable(); // Start with a queryable object
+
+            if (isActive.HasValue) // If the 'isActive' parameter is provided
+            {
+                query = query.Where(c => c.IsActive == isActive.Value);
+            }
+
+            return await query.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<Category>> GetCategory(int id, ActiveStatus? isActive) // Optional 'isActive' parameter
         {
-            var category = await _context.Categories.FindAsync(id);
+            var query = _context.Categories.AsQueryable();
+
+            if (isActive.HasValue)
+            {
+                query = query.Where(c => c.IsActive == isActive); // Direct comparison with integers
+            }
+
+            var category = await query.FirstOrDefaultAsync(c => c.CategoryId == id);
+
             if (category == null) { return NotFound(); }
             return category;
         }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Serilog;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace MainTainSenseAPI.Filters
 {

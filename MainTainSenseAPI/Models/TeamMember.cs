@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MainTainSenseAPI.Models;
+﻿namespace MainTainSenseAPI.Models;
 
 public partial class TeamMember
 {

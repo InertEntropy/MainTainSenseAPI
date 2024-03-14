@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace MainTainSenseAPI.Models;
 
@@ -86,9 +84,7 @@ public partial class MainTainSenseDataContext : DbContext
 
             entity.Property(e => e.AssetId).HasColumnName("assetid");
             entity.Property(e => e.AssetDescription).HasColumnName("assetdescription");
-            entity.Property(e => e.AssetLocation)
-                .HasColumnType("text(100)")
-                .HasColumnName("assetlocation");
+            entity.Property(e => e.AssetLocationId).HasColumnName("assetlocationid");
             entity.Property(e => e.AssetName)
                 .HasColumnType("text(100)")
                 .HasColumnName("assetname");
@@ -112,6 +108,7 @@ public partial class MainTainSenseDataContext : DbContext
 
             entity.Property(e => e.AssetTypeId).HasColumnName("assettypeid");
             entity.Property(e => e.Active).HasColumnName("active");
+            entity.Property(e => e.IsMachine).HasColumnName("ismachine");
             entity.Property(e => e.AssetTypeDescription).HasColumnName("assettypedescription");
             entity.Property(e => e.AssetTypeName)
                 .HasColumnType("text(50)")
@@ -211,7 +208,6 @@ public partial class MainTainSenseDataContext : DbContext
             entity.Property(e => e.LocationId).HasColumnName("locationid");
             entity.Property(e => e.BuildingId).HasColumnName("buildingid");
             entity.Property(e => e.IsActive).HasColumnName("isactive");
-            entity.Property(e => e.IsMachine).HasColumnName("ismachine");
             entity.Property(e => e.LastUpdate).HasColumnName("lastupdate");
             entity.Property(e => e.LocationDescription).HasColumnName("locationdescription");
             entity.Property(e => e.LocationName)
@@ -227,7 +223,7 @@ public partial class MainTainSenseDataContext : DbContext
 
             entity.HasOne(d => d.Building).WithMany(p => p.Locations).HasForeignKey(d => d.BuildingId);
 
-            entity.HasOne(d => d.ParentLocation).WithMany(p => p.InverseParentlocation).HasForeignKey(d => d.ParentLocationId);
+            entity.HasOne(d => d.ParentLocation).WithMany(p => p.ChildLocations).HasForeignKey(d => d.ParentLocationId);
         });
 
         modelBuilder.Entity<Message>(entity =>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
@@ -17,7 +15,7 @@ public partial class Building
 
     public string? LastUpdate { get; set; }
 
-    public int? IsActive { get; set; }
+    public ActiveStatus IsActive { get; set; }
 
     public virtual ICollection<Location> Locations { get; set; } = [];
 }

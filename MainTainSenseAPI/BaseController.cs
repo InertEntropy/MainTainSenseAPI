@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
 namespace MainTainSenseAPI.Controllers // Adjust if your controllers are in a different namespace

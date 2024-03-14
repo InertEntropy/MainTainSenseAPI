@@ -19,15 +19,31 @@ namespace MainTainSenseAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AssetType>>> GetAssetTypes()
+        public async Task<ActionResult<IEnumerable<AssetType>>> GetAssetTypes(ActiveStatus? isActive)
         {
-            return await _context.AssetTypes.ToListAsync();
+            var query = _context.AssetTypes.AsQueryable();
+
+            if (isActive.HasValue)
+            {
+                query = query.Where(a => a.Active == isActive);
+            }
+
+            return await query.ToListAsync();
         }
 
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<AssetType>> GetAssetType(int id)
+        public async Task<ActionResult<AssetType>> GetAssetType(int id, ActiveStatus? isActive)
         {
-            var assetType = await _context.AssetTypes.FindAsync(id);
+            var query = _context.AssetTypes.AsQueryable();
+
+            if (isActive.HasValue)
+            {
+                query = query.Where(a => a.Active == isActive);
+            }
+
+            var assetType = await query.FirstOrDefaultAsync(a => a.AssetTypeId == id);
+
             if (assetType == null) { return NotFound(); }
             return assetType;
         }
@@ -130,7 +146,5 @@ namespace MainTainSenseAPI.Controllers
             }
             return NoContent(); // 204 Success, no content returned
         }
-
-
     }
 }
