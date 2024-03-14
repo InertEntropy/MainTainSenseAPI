@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Frequency
+public partial class Frequency : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int FrequencyId { get; set; }
 
     [Required]

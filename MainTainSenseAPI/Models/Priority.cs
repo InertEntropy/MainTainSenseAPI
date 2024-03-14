@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Priority
+public partial class Priority : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int PriorityId { get; set; }
 
     [Required]

@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Status
+public partial class Status : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int StatusId { get; set; }
 
     [Required]

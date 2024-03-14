@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 namespace MainTainSenseAPI.Models;
 
-public partial class Asset
+public partial class Asset : IEntityWithId
 {
+    public int Id { get; set; }
+
     [Range(1, int.MaxValue, ErrorMessage = "Asset Type ID must be a positive number")]
     public int AssetId { get; set; }
 

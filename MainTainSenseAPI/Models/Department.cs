@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Department
+public partial class Department : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int DepartmentId { get; set; }
 
     [Required]

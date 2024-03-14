@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class TemplateTask
+public partial class TemplateTask : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int TemplateId { get; set; }
 
     [Required]

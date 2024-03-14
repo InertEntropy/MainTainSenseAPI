@@ -152,7 +152,11 @@ namespace MainTainSenseAPI.Controllers
             {
                 return NotFound();
             }
-
+            
+            if (!EntityExists<Asset>(id))
+            {
+                return NotFound();
+            }
             // Update properties from asset using a safe approach
             assetToUpdate.AssetName = asset.AssetName;
             assetToUpdate.AssetLocationId = asset.AssetLocationId;
@@ -162,59 +166,18 @@ namespace MainTainSenseAPI.Controllers
             {
                 asset.UpdatedBy = CurrentUserName; 
                 asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM");
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException ex)
-                {
-                    if (ex.InnerException is SqliteException sqliteEx)
-                    {
-                        switch (sqliteEx.ErrorCode)
-                        {
-                            case 19:  // Example: SQLite Constraint Violation
-                                return BadRequest("Cannot update due to related data");
-
-                            case 1:  // Database locked
-                                return StatusCode(503, "Database temporarily busy, please try again");
-
-                            case 6:  //  Cannot open
-                                _logger.Error(sqliteEx, "Failed to open database");
-                                return StatusCode(500, "Database error, contact administrator");
-
-                            case 11:  // Database is corrupt
-                                _logger.Fatal(sqliteEx, "Database corruption detected. Application terminating."); // Use LogFatal for critical errors
-                                return StatusCode(500, "Critical database failure, contact support.");
-
-                            default:
-                                _logger.Error(ex, "SQLite Error");
-                                return StatusCode(500);
-                        }
-                    }
-                    else
-                    {
-                        // Log non-SQL exception
-                        return StatusCode(500);
-                    }
-                }
+                await _context.SaveChangesAsync(); // Database update
             }
-
             catch (DbUpdateConcurrencyException) when (!AssetExists(id))
             {
                 return Conflict(new ProblemDetails { Title = "Conflict - Asset has been modified" });
             }
-            catch (DbUpdateException) // Consider more specific exception handling
+            catch (DbUpdateException ex)
             {
-                // Log the error 
-                return StatusCode(500, new ProblemDetails { Title = "Error updating asset" });
+                return HandleDatabaseException(ex);
             }
-            
-            bool AssetExists(int id)
-            {
-                return _context.Assets.Any(e => e.AssetId == id);
-            }
-            return NoContent(); // 204 Success, no content returned
+            return NoContent(); 
+            // Success
         }
     }
 }

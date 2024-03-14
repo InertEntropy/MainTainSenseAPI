@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MainTainSenseAPI.Contracts;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Accesslevel
+public partial class Accesslevel : IEntityWithId
 {
-    public int Accesslevelid { get; set; }
+    public int Id { get; set; }
+
+    public int AccessLevelId { get; set; }
 
     [Required]
     public string? Accesslevelname { get; set; }

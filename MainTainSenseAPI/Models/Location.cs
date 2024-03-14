@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Location
+public partial class Location : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int LocationId { get; set; }
 
     [Required]

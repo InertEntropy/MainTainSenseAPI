@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MainTainSenseAPI.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class AssetType
+public partial class AssetType : IEntityWithId
 {
+    public int Id { get; set; }
+
     public int AssetTypeId { get; set; }
 
     public YesNo IsMachine { get; set; }
