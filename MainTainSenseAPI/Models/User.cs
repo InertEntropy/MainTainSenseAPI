@@ -30,7 +30,7 @@ public partial class User
 
     public string? LastUpdate { get; set; }
 
-    public virtual ICollection<Message> MessageRecipients { get; set; } = new List<Message>();
+    public virtual ICollection<Message> MessageRecipients { get; set; } = [];
 
-    public virtual ICollection<Message> MessageSenders { get; set; } = new List<Message>();
+    public virtual ICollection<Message> MessageSenders { get; set; } = [];
 }

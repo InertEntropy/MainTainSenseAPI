@@ -1,49 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; 
-using MainTainSenseAPI.Models;      
-using Microsoft.AspNetCore.Authorization;
-using Serilog;
-using Serilog.Core;
+using Microsoft.EntityFrameworkCore;
+using MainTainSenseAPI.Models;
+using Microsoft.AspNetCore.Authorization; // Add if using Authorize
 
 namespace MainTainSenseAPI.Controllers
 {
-    [Route("api/[controller]")] // Routing pattern
+    [Route("api/[controller]")]
     [ApiController]
-    public class AssetsController : BaseController
+    public class AssetTypesController : BaseController
     {
         private readonly MainTainSenseDataContext _context;
 
-        public AssetsController(MainTainSenseDataContext context, Serilog.ILogger logger, IConfiguration configuration)
-       : base(logger, configuration)
+        public AssetTypesController(MainTainSenseDataContext context, Serilog.ILogger logger, IConfiguration configuration)
+            : base(logger, configuration)
         {
             _context = context;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Asset>>> GetAssets()
+        public async Task<ActionResult<IEnumerable<AssetType>>> GetAssetTypes()
         {
-            return await _context.Assets.ToListAsync();
+            return await _context.AssetTypes.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Asset>> GetAssetById(int id)
+        public async Task<ActionResult<AssetType>> GetAssetType(int id)
         {
-            var asset = await _context.Assets
-                                      .Include(a => a.AssetType)
-                                      .FirstOrDefaultAsync(a => a.AssetId == id);
-
-            if (asset == null)
-            {
-                return NotFound();
-            }
-
-            return asset;
+            var assetType = await _context.AssetTypes.FindAsync(id);
+            if (assetType == null) { return NotFound(); }
+            return assetType;
         }
 
-        [Authorize]
+        [Authorize] 
         [HttpPost]
-        public async Task<ActionResult<Asset>> CreateAsset(Asset asset)
+        public async Task<ActionResult<AssetType>> CreateAssetType(AssetType assetType)
         {
             if (!ModelState.IsValid)
             {
@@ -75,11 +66,11 @@ namespace MainTainSenseAPI.Controllers
 
             try
             {
-                asset.UpdatedBy = CurrentUserName; // Implement GetCurrentUserName()
-                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); // Or your desired format
+                assetType.UpdatedBy = CurrentUserName; // Implement GetCurrentUserName()
+                assetType.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); // Or your desired format
 
                 // Save to Database
-                _context.Assets.Add(asset);
+                _context.AssetTypes.Add(assetType);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException) // Example of catching a database exception
@@ -92,55 +83,54 @@ namespace MainTainSenseAPI.Controllers
                 };
                 return StatusCode(500, problemDetails);
             }
-            _logger.Information("Create asset with ID {AssetId} from database", asset.AssetId);
+            _logger.Information("Create asset type with ID {AssetTypeId} from database", assetType.AssetTypeId);
 
-
-            // (4) Success Response (Best Practice)
-            return CreatedAtAction("GetAssets", new { id = asset.AssetId }, asset);
+            return CreatedAtAction("GetAssetType", new { id = assetType.AssetTypeId }, assetType);
         }
-
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsset(int id, Asset asset)
+        public async Task<IActionResult> UpdateAssetType(int id, AssetType assetType)
         {
-            if (id != asset.AssetId)
+            if (id != assetType.AssetTypeId)
             {
-                return BadRequest("Asset ID mismatch");
+                return BadRequest("Asset Type Id mismatch");
             }
 
-            var assetToUpdate = await _context.Assets.FindAsync(id);
-            if (assetToUpdate == null)
+            var assetTypeToUpdate = await _context.AssetTypes.FindAsync(id);
+            if (assetTypeToUpdate == null)
             {
                 return NotFound();
             }
 
             // Update properties from asset using a safe approach
-            assetToUpdate.AssetName = asset.AssetName;
-            assetToUpdate.AssetLocation = asset.AssetLocation;
-            assetToUpdate.Assetstatus = asset.Assetstatus;
-           
+            assetTypeToUpdate.AssetTypeName = assetType.AssetTypeName;
+            assetTypeToUpdate.AssetTypeDescription = assetType.AssetTypeDescription;
+            assetTypeToUpdate.Active = assetType.Active;
+
             try
             {
-                asset.UpdatedBy = CurrentUserName; 
-                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); 
+                assetType.UpdatedBy = CurrentUserName;
+                assetType.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM");
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!AssetExists(id))
+            catch (DbUpdateConcurrencyException) when (!AssetTypeExists(id))
             {
-                return Conflict(new ProblemDetails { Title = "Conflict - Asset has been modified" });
+                return Conflict(new ProblemDetails { Title = "Conflict - Asset type has been modified" });
             }
             catch (DbUpdateException) // Consider more specific exception handling
             {
                 // Log the error 
-                return StatusCode(500, new ProblemDetails { Title = "Error updating asset" });
+                return StatusCode(500, new ProblemDetails { Title = "Error updating asset type" });
             }
-            
-            bool AssetExists(int id)
+
+            bool AssetTypeExists(int id)
             {
-                return _context.Assets.Any(e => e.AssetId == id);
+                return _context.Assets.Any(e => e.AssetTypeId == id);
             }
             return NoContent(); // 204 Success, no content returned
         }
+
+
     }
 }

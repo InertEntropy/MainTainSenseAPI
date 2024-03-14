@@ -1,49 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; 
-using MainTainSenseAPI.Models;      
-using Microsoft.AspNetCore.Authorization;
-using Serilog;
-using Serilog.Core;
+using Microsoft.EntityFrameworkCore;
+using MainTainSenseAPI.Models;
+using Microsoft.AspNetCore.Authorization; // Add if using Authorize
 
 namespace MainTainSenseAPI.Controllers
 {
-    [Route("api/[controller]")] // Routing pattern
+    [Route("api/[controller]")]
     [ApiController]
-    public class AssetsController : BaseController
+    public class CategoryController : BaseController
     {
         private readonly MainTainSenseDataContext _context;
 
-        public AssetsController(MainTainSenseDataContext context, Serilog.ILogger logger, IConfiguration configuration)
-       : base(logger, configuration)
+        public CategoryController(MainTainSenseDataContext context, Serilog.ILogger logger, IConfiguration configuration)
+            : base(logger, configuration)
         {
             _context = context;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Asset>>> GetAssets()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Assets.ToListAsync();
+            return await _context.Categories.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Asset>> GetAssetById(int id)
+        public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var asset = await _context.Assets
-                                      .Include(a => a.AssetType)
-                                      .FirstOrDefaultAsync(a => a.AssetId == id);
-
-            if (asset == null)
-            {
-                return NotFound();
-            }
-
-            return asset;
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null) { return NotFound(); }
+            return category;
         }
 
-        [Authorize]
+        [Authorize] // Assuming you want creation to be authorized
         [HttpPost]
-        public async Task<ActionResult<Asset>> CreateAsset(Asset asset)
+        public async Task<ActionResult<Category>> CreateCategory(Category category)
         {
             if (!ModelState.IsValid)
             {
@@ -72,14 +63,13 @@ namespace MainTainSenseAPI.Controllers
                 }
                 return BadRequest(problemDetails); // Returns custom error response
             }
-
             try
             {
-                asset.UpdatedBy = CurrentUserName; // Implement GetCurrentUserName()
-                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); // Or your desired format
+                category.UpdatedBy = CurrentUserName; // Implement GetCurrentUserName()
+                category.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); // Or your desired format
 
                 // Save to Database
-                _context.Assets.Add(asset);
+                _context.Categories.Add(category);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException) // Example of catching a database exception
@@ -87,60 +77,58 @@ namespace MainTainSenseAPI.Controllers
                 var problemDetails = new ProblemDetails
                 {
                     Status = 500,
-                    Title = "Error saving asset to database",
+                    Title = "Error saving category to database",
                     Detail = "See inner exception for details." // (Log the actual ex.Message)
                 };
                 return StatusCode(500, problemDetails);
             }
-            _logger.Information("Create asset with ID {AssetId} from database", asset.AssetId);
+            _logger.Information("Create building with ID {CategoryId} from database", category.CategoryId);
 
-
-            // (4) Success Response (Best Practice)
-            return CreatedAtAction("GetAssets", new { id = asset.AssetId }, asset);
+            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
-
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsset(int id, Asset asset)
+        public async Task<IActionResult> UpdateCategory(int id, Category category)
         {
-            if (id != asset.AssetId)
+            if (id != category.CategoryId)
             {
-                return BadRequest("Asset ID mismatch");
+                return BadRequest("Asset Type Id mismatch");
             }
 
-            var assetToUpdate = await _context.Assets.FindAsync(id);
-            if (assetToUpdate == null)
+            var categoryToUpdate = await _context.Categories.FindAsync(id);
+            if (categoryToUpdate == null)
             {
                 return NotFound();
             }
 
             // Update properties from asset using a safe approach
-            assetToUpdate.AssetName = asset.AssetName;
-            assetToUpdate.AssetLocation = asset.AssetLocation;
-            assetToUpdate.Assetstatus = asset.Assetstatus;
-           
+            categoryToUpdate.CategoryDescription = category.CategoryDescription;
+            categoryToUpdate.IsActive = category.IsActive;
+
             try
             {
-                asset.UpdatedBy = CurrentUserName; 
-                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); 
+                category.UpdatedBy = CurrentUserName;
+                category.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM");
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!AssetExists(id))
+            catch (DbUpdateConcurrencyException) when (!BuildingExists(id))
             {
-                return Conflict(new ProblemDetails { Title = "Conflict - Asset has been modified" });
+                return Conflict(new ProblemDetails { Title = "Conflict - Category has been modified" });
             }
             catch (DbUpdateException) // Consider more specific exception handling
             {
                 // Log the error 
-                return StatusCode(500, new ProblemDetails { Title = "Error updating asset" });
+                return StatusCode(500, new ProblemDetails { Title = "Error updating category" });
             }
-            
-            bool AssetExists(int id)
+
+            bool BuildingExists(int id)
             {
-                return _context.Assets.Any(e => e.AssetId == id);
+                return _context.Categories.Any(e => e.CategoryId == id);
             }
             return NoContent(); // 204 Success, no content returned
         }
+
     }
 }
+

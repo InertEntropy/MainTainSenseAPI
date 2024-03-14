@@ -31,5 +31,5 @@ public partial class PreventiveMaintenance
 
     public string? LastUpdate { get; set; }
 
-    public virtual ICollection<PmChecklist> PmChecklists { get; set; } = new List<PmChecklist>();
+    public virtual ICollection<PmChecklist> PmChecklists { get; set; } = [];
 }

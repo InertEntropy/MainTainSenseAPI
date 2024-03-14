@@ -30,7 +30,7 @@ public partial class Location
 
     public virtual Building? Building { get; set; }
 
-    public virtual ICollection<Location> InverseParentlocation { get; set; } = new List<Location>();
+    public virtual ICollection<Location> InverseParentlocation { get; set; } = [];
 
     public virtual Location? ParentLocation { get; set; }
 }

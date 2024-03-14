@@ -27,7 +27,7 @@ public partial class Message
 
     public int? IsDeletedForRecipient { get; set; }
 
-    public virtual ICollection<Message> InverseParenttMessage { get; set; } = new List<Message>();
+    public virtual ICollection<Message> InverseParenttMessage { get; set; } = [];
 
     public virtual Message? ParenttMessage { get; set; }
 

@@ -25,5 +25,5 @@ public partial class Frequency
 
     public string? FrequencyMonth { get; set; }
 
-    public virtual ICollection<TemplateTask> TemplateTasks { get; set; } = new List<TemplateTask>();
+    public virtual ICollection<TemplateTask> TemplateTasks { get; set; } = [];
 }

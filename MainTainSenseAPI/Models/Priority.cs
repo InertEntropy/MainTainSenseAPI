@@ -16,5 +16,5 @@ public partial class Priority
 
     public string? ColorCode { get; set; }
 
-    public virtual ICollection<WorkOrder> Workorders { get; set; } = new List<WorkOrder>();
+    public virtual ICollection<WorkOrder> Workorders { get; set; } = [];
 }

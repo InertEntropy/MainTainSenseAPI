@@ -42,5 +42,5 @@ public partial class Asset
 
     public string? LastUpdate { get; set; }
 
-    public virtual ICollection<WorkOrder> WorkOrders { get; set; } = new List<WorkOrder>();
+    public virtual ICollection<WorkOrder> WorkOrders { get; set; } = [];
 }
