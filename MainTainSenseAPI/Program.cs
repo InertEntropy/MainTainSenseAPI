@@ -13,11 +13,19 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Services.AddDbContext<MainTainSenseDataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MTSDb")));
 
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>() // Assuming custom Identity classes
+        .AddEntityFrameworkStores<MainTainSenseDataContext>();
+
+builder.Services.AddAuthorization(options =>
+{
+    // You'll define your authorization policies here 
+});
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new AllowAllAuthorizationFilter()); // Your filter here
     options.Filters.Add(new GlobalExceptionFilter(logger));
 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,11 +1,10 @@
-﻿using MainTainSenseAPI.Contracts;
+﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class PmTemplate : IEntityWithId
-{
-    public int Id { get; set; }
+public partial class PmTemplate
+{ 
 
     public int? TemplateId { get; set; }
 

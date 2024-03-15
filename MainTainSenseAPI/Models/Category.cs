@@ -1,13 +1,11 @@
-﻿using MainTainSenseAPI.Contracts;
+﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Category : IEntityWithId
+public partial class Category 
 {
-    public int Id { get; set; }
-
-    public int CategoryId { get; set; }
+     public int CategoryId { get; set; }
 
     [Required]
     public string? CategoryDescription { get; set; }

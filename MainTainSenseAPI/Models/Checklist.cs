@@ -1,11 +1,9 @@
-﻿using MainTainSenseAPI.Contracts;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Checklist : IEntityWithId
-{
-    public int Id { get; set; }
+public partial class Checklist
+{ 
 
     public int ChecklistId { get; set; }
 

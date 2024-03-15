@@ -1,10 +1,8 @@
-﻿using MainTainSenseAPI.Contracts;
-
+﻿
 namespace MainTainSenseAPI.Models;
 
-public partial class PmChecklist : IEntityWithId
-{
-    public int Id { get; set; }
+public partial class PmChecklist
+{ 
 
     public int ChecklistId { get; set; }
 

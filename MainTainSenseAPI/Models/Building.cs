@@ -1,12 +1,9 @@
-﻿using MainTainSenseAPI.Contracts;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Building : IEntityWithId
+public partial class Building
 {
-    public int Id { get; set; }
-
     public int BuildingId { get; set; }
     
     [Required]

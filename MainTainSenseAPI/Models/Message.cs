@@ -1,12 +1,9 @@
-﻿using MainTainSenseAPI.Contracts;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Message : IEntityWithId
-{
-    public int Id { get; set; }
-
+public partial class Message
+{ 
     public int MessagesId { get; set; }
 
     public int? ParenttMessageId { get; set; }

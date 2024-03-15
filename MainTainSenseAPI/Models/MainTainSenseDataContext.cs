@@ -5,14 +5,14 @@ namespace MainTainSenseAPI.Models;
 public partial class MainTainSenseDataContext : DbContext
 {
     public MainTainSenseDataContext()
-    {
+    { 
     }
 
     public MainTainSenseDataContext(DbContextOptions<MainTainSenseDataContext> options)
         : base(options)
     {
     }
-
+    
     public virtual DbSet<Accesslevel> Accesslevels { get; set; }
 
     public virtual DbSet<Asset> Assets { get; set; }
@@ -72,7 +72,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("accesslevels");
 
-            entity.Property(e => e.Accesslevelid).HasColumnName("accesslevelid");
+            entity.Property(e => e.AccessLevelId).HasColumnName("accesslevelid");
             entity.Property(e => e.Accesslevelname)
                 .HasColumnType("text(50)")
                 .HasColumnName("accesslevelname");

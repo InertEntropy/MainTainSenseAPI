@@ -1,144 +1,67 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MainTainSenseAPI.Models;
+﻿using MainTainSenseAPI.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Data.Sqlite;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MainTainSenseAPI.Controllers
 {
-    [Route("api/[controller]")] // Routing pattern
+    [Route("api/[controller]")] 
     [ApiController]
+    [Authorize] // Assuming you want authorization for the AssetsController
     public class AssetsController : BaseController
     {
-        private readonly MainTainSenseDataContext _context;
-
         public AssetsController(MainTainSenseDataContext context, Serilog.ILogger logger, IConfiguration configuration)
-       : base(logger, configuration)
-        {
-            _context = context;
-            _logger = logger;
-        }
+            : base(context, logger, configuration) { }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Asset>>> GetAssets(
-            int? assetTypeId,
-            AssetStatus? assetStatus)
+        public async Task<ActionResult<IEnumerable<Asset>>> GetAssets()
         {
-            var query = _context.Assets.AsQueryable();
-
-            if (assetTypeId.HasValue)
-            {
-                query = query.Where(c => c.AssetTypeId == assetTypeId.Value);
-            }
-
-            if (assetStatus.HasValue)
-            {
-                query = query.Where(c => c.Assetstatus == assetStatus.Value);
-            }
-
-            return await query.ToListAsync();
+            return await _context.Assets
+                .Include(a => a.AssetType)
+                .Include(a => a.Location) 
+                .ToListAsync(); 
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Asset>> GetAssetById(
-            int id,
-            int? assetTypeId,
-             AssetStatus? assetStatus)
+        public async Task<ActionResult<Asset>> GetAssetById(int id)
         {
-            var query = _context.Assets.AsQueryable();
+            var asset = await _context.Assets
+                .Include(a => a.AssetType)
+                .Include(a => a.Location)
+                .FirstOrDefaultAsync(a => a.AssetId == id);
 
-            if (assetTypeId.HasValue)
+            if (asset == null)
             {
-                query = query.Where(a => a.AssetTypeId == assetTypeId);
+                return NotFound();
             }
 
-            if (assetStatus.HasValue)
-            {
-                query = query.Where(a => a.Assetstatus == assetStatus);
-            }
-
-            var asset = await query
-                                .Include(a => a.AssetType)
-                                .FirstOrDefaultAsync(a => a.AssetId == id);
-
-            if (asset == null) { return NotFound(); }
             return asset;
         }
 
-        [Authorize]
         [HttpPost]
-        public async Task<ActionResult<Asset>> CreateAsset(Asset asset)
+        public async Task<IActionResult> CreateAsset(Asset asset)
         {
             if (!ModelState.IsValid)
             {
-                var problemDetails = new ProblemDetails
-                {
-                    Status = 400,
-                    Title = "One or more validation errors occurred.",
-                    Detail = "Please check the following fields:",
-                };
-
-                problemDetails.Extensions["errors"] = new Dictionary<string, string[]>();
-
-                foreach (var entry in ModelState)
-                {
-                    if (entry.Value.Errors.Count > 0)
-                    {
-                        // Check if errorsDict is null before using it
-                        if (problemDetails.Extensions["errors"] is not Dictionary<string, string[]> errorsDict)
-                        {
-                            errorsDict = [];
-                            problemDetails.Extensions["errors"] = errorsDict;
-                        }
-
-                        errorsDict.Add(entry.Key, entry.Value.Errors.Select(e => e.ErrorMessage).ToArray());
-                    }
-                }
-                return BadRequest(problemDetails); // Returns custom error response
+                return HandleValidationErrors(ModelState);
             }
 
             try
             {
-                asset.UpdatedBy = CurrentUserName; // Implement GetCurrentUserName()
-                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM"); // Or your desired format
+                asset.UpdatedBy = CurrrentUserName(HttpContext);
+                asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM");
 
-                // Save to Database
                 _context.Assets.Add(asset);
                 await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetAssets", new { id = asset.AssetId }, asset);
             }
-            catch (DbUpdateException) // Example of catching a database exception
+            catch (DbUpdateException ex)
             {
-                var problemDetails = new ProblemDetails
-                {
-                    Status = 500,
-                    Title = "Error saving asset to database",
-                    Detail = "See inner exception for details." // (Log the actual ex.Message)
-                };
-                return StatusCode(500, problemDetails);
+                return HandleDatabaseException(ex);
             }
-            
-            await _context.SaveChangesAsync();
-
-            _logger.Information("Create asset with ID {AssetId} from database", asset.AssetId);
-
-            if (asset.AssetType.IsMachine == YesNo.Yes)
-            {
-                var newLocation = new Location
-                {
-                    LocationName = asset.AssetName,
-                    LocationDescription = asset.AssetDescription,
-                };
-                
-                _context.Locations.Add(newLocation);
-            }
-
-            await _context.SaveChangesAsync();
-            // (4) Success Response (Best Practice)
-            return CreatedAtAction("GetAssets", new { id = asset.AssetId }, asset);
         }
 
-
-        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsset(int id, Asset asset)
         {
@@ -152,32 +75,32 @@ namespace MainTainSenseAPI.Controllers
             {
                 return NotFound();
             }
-            
-            if (!EntityExists<Asset>(id))
-            {
-                return NotFound();
-            }
-            // Update properties from asset using a safe approach
+
+
             assetToUpdate.AssetName = asset.AssetName;
+            assetToUpdate.AssetDescription = asset.AssetDescription;
             assetToUpdate.AssetLocationId = asset.AssetLocationId;
             assetToUpdate.Assetstatus = asset.Assetstatus;
-           
+            assetToUpdate.Serialnumber = asset.Serialnumber;
+
+            // Optional, if InstallDate can be changed:
+            if (asset.InstallDate != null)
+            {
+                assetToUpdate.InstallDate = asset.InstallDate;
+            }
+
             try
             {
-                asset.UpdatedBy = CurrentUserName; 
+                asset.UpdatedBy = CurrrentUserName(HttpContext);
                 asset.LastUpdate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss AM/PM");
-                await _context.SaveChangesAsync(); // Database update
-            }
-            catch (DbUpdateConcurrencyException) when (!AssetExists(id))
-            {
-                return Conflict(new ProblemDetails { Title = "Conflict - Asset has been modified" });
+                await _context.SaveChangesAsync();
+                return NoContent();
             }
             catch (DbUpdateException ex)
             {
                 return HandleDatabaseException(ex);
             }
-            return NoContent(); 
-            // Success
         }
     }
 }
+

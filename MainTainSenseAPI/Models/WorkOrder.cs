@@ -1,12 +1,9 @@
-﻿using MainTainSenseAPI.Contracts;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class WorkOrder : IEntityWithId
-{
-    public int Id { get; set; }
-
+public partial class WorkOrder
+{ 
     public int WorkOrderId { get; set; }
 
     [Required]

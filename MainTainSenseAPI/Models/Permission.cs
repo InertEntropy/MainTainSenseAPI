@@ -1,12 +1,9 @@
-﻿using MainTainSenseAPI.Contracts;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MainTainSenseAPI.Models;
 
-public partial class Permission : IEntityWithId
-{
-    public int Id { get; set; }
-
+public partial class Permission
+{ 
     public int PermissionId { get; set; }
 
     [Required]
