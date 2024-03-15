@@ -5,7 +5,7 @@ namespace MainTainSenseAPI.Models;
 public partial class Checklist
 { 
 
-    public int ChecklistId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? ChecklistName { get; set; }

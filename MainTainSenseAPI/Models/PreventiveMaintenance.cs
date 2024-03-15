@@ -6,7 +6,7 @@ namespace MainTainSenseAPI.Models;
 public partial class PreventiveMaintenance
 { 
 
-    public int PmId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? PmDescription { get; set; }

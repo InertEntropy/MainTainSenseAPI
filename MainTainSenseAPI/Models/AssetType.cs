@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class AssetType
 {
-    public int AssetTypeId { get; set; }
+    public int Id { get; set; }
 
     public YesNo IsMachine { get; set; }
 

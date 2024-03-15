@@ -6,7 +6,7 @@ namespace MainTainSenseAPI.Models;
 public partial class PmTemplate
 { 
 
-    public int? TemplateId { get; set; }
+    public int? Id { get; set; }
 
     [Required]
     public string? TemplateName { get; set; }

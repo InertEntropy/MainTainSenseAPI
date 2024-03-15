@@ -35,8 +35,6 @@ public partial class MainTainSenseDataContext : DbContext
 
     public virtual DbSet<Message> Messages { get; set; }
 
-    public virtual DbSet<Permission> Permissions { get; set; }
-
     public virtual DbSet<PmChecklist> Pmchecklists { get; set; }
 
     public virtual DbSet<PmTemplate> Pmtemplates { get; set; }
@@ -44,10 +42,6 @@ public partial class MainTainSenseDataContext : DbContext
     public virtual DbSet<PreventiveMaintenance> Preventivemaintenances { get; set; }
 
     public virtual DbSet<Priority> Priorities { get; set; }
-
-    public virtual DbSet<Role> Roles { get; set; }
-
-    public virtual DbSet<RolePermission> Rolepermissions { get; set; }
 
     public virtual DbSet<Status> Statuses { get; set; }
 
@@ -72,7 +66,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("accesslevels");
 
-            entity.Property(e => e.AccessLevelId).HasColumnName("accesslevelid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.Accesslevelname)
                 .HasColumnType("text(50)")
                 .HasColumnName("accesslevelname");
@@ -82,7 +76,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("assets");
 
-            entity.Property(e => e.AssetId).HasColumnName("assetid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.AssetDescription).HasColumnName("assetdescription");
             entity.Property(e => e.AssetLocationId).HasColumnName("assetlocationid");
             entity.Property(e => e.AssetName)
@@ -91,7 +85,7 @@ public partial class MainTainSenseDataContext : DbContext
             entity.Property(e => e.Assetstatus)
                 .HasColumnType("text(50)")
                 .HasColumnName("assetstatus");
-            entity.Property(e => e.AssetTypeId).HasColumnName("assettypeid");
+            entity.Property(e => e.AssetTypeId).HasColumnName("Id");
             entity.Property(e => e.InstallDate).HasColumnName("installdate");
             entity.Property(e => e.LastUpdate).HasColumnName("lastupdate");
             entity.Property(e => e.Serialnumber)
@@ -106,7 +100,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("assettypes");
 
-            entity.Property(e => e.AssetTypeId).HasColumnName("assettypeid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.Active).HasColumnName("active");
             entity.Property(e => e.IsMachine).HasColumnName("ismachine");
             entity.Property(e => e.AssetTypeDescription).HasColumnName("assettypedescription");
@@ -123,7 +117,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("buildings");
 
-            entity.Property(e => e.BuildingId).HasColumnName("buildingid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.BuildingDescription)
                 .HasColumnType("text(255)")
                 .HasColumnName("buildingdescription");
@@ -141,7 +135,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("categories");
 
-            entity.Property(e => e.CategoryId).HasColumnName("categoryid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.CategoryDescription).HasColumnName("categorydescription");
             entity.Property(e => e.IsActive).HasColumnName("isactive");
             entity.Property(e => e.LastUpdate).HasColumnName("lastupdate");
@@ -154,7 +148,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("checklists");
 
-            entity.Property(e => e.ChecklistId).HasColumnName("checklistid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.ChecklistName)
                 .HasColumnType("text(50)")
                 .HasColumnName("checklistname");
@@ -163,11 +157,11 @@ public partial class MainTainSenseDataContext : DbContext
 
         modelBuilder.Entity<ChecklistItem>(entity =>
         {
-            entity.HasKey(e => e.ItemId);
+            entity.HasKey(e => e.Id);
 
             entity.ToTable("checklistitems");
 
-            entity.Property(e => e.ItemId).HasColumnName("itemid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.ChecklistId).HasColumnName("checklistid");
             entity.Property(e => e.ChecklistItemsDescription).HasColumnName("checklistitemsdescription");
             entity.Property(e => e.IsCompleted).HasColumnName("iscompleted");
@@ -180,7 +174,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("departments");
 
-            entity.Property(e => e.DepartmentId).HasColumnName("departmentid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.DepartmentName)
                 .HasColumnType("text(50)")
                 .HasColumnName("departmentname");
@@ -191,7 +185,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("frequency");
 
-            entity.Property(e => e.FrequencyId).HasColumnName("frequencyid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.DayofMonth).HasColumnName("dayofmonth");
             entity.Property(e => e.Dayofweek).HasColumnName("dayofweek");
             entity.Property(e => e.FrequencyDescription).HasColumnName("frequencydescription");
@@ -205,7 +199,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("locations");
 
-            entity.Property(e => e.LocationId).HasColumnName("locationid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.BuildingId).HasColumnName("buildingid");
             entity.Property(e => e.IsActive).HasColumnName("isactive");
             entity.Property(e => e.LastUpdate).HasColumnName("lastupdate");
@@ -228,11 +222,11 @@ public partial class MainTainSenseDataContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessagesId);
+            entity.HasKey(e => e.Id);
 
             entity.ToTable("messages");
 
-            entity.Property(e => e.MessagesId).HasColumnName("messagesid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.CreationTime).HasColumnName("creationtime");
             entity.Property(e => e.IsDeletedForRecipient).HasColumnName("isdeletedforrecipient");
             entity.Property(e => e.IsDeletedForSender).HasColumnName("isdeletedforsender");
@@ -252,24 +246,13 @@ public partial class MainTainSenseDataContext : DbContext
             entity.HasOne(d => d.Sender).WithMany(p => p.MessageSenders).HasForeignKey(d => d.SenderId);
         });
 
-        modelBuilder.Entity<Permission>(entity =>
-        {
-            entity.ToTable("permissions");
-
-            entity.Property(e => e.PermissionId).HasColumnName("permissionid");
-            entity.Property(e => e.PermissionName)
-                .HasColumnType("text(50)")
-                .HasColumnName("permissionname");
-            entity.Property(e => e.PermissionsDescription).HasColumnName("permissionsdescription");
-        });
-
         modelBuilder.Entity<PmChecklist>(entity =>
         {
-            entity.HasKey(e => e.ChecklistId);
+            entity.HasKey(e => e.Id);
 
             entity.ToTable("pmchecklists");
 
-            entity.Property(e => e.ChecklistId).HasColumnName("checklistid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.PmId).HasColumnName("pmid");
 
             entity.HasOne(d => d.Pm).WithMany(p => p.PmChecklists).HasForeignKey(d => d.PmId);
@@ -286,7 +269,7 @@ public partial class MainTainSenseDataContext : DbContext
                 .HasColumnType("boolean")
                 .HasColumnName("isactive");
             entity.Property(e => e.PmTemplateDescription).HasColumnName("pmtemplatedescription");
-            entity.Property(e => e.TemplateId).HasColumnName("templateid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.TemplateName)
                 .HasColumnType("text(50)")
                 .HasColumnName("templatename");
@@ -295,11 +278,11 @@ public partial class MainTainSenseDataContext : DbContext
 
         modelBuilder.Entity<PreventiveMaintenance>(entity =>
         {
-            entity.HasKey(e => e.PmId);
+            entity.HasKey(e => e.Id);
 
             entity.ToTable("preventivemaintenance");
 
-            entity.Property(e => e.PmId).HasColumnName("pmid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.AssetId).HasColumnName("assetid");
             entity.Property(e => e.FrequencyId).HasColumnName("frequencyid");
             entity.Property(e => e.IsActive)
@@ -319,7 +302,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("priorities");
 
-            entity.Property(e => e.PriorityId).HasColumnName("priorityid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.ColorCode)
                 .HasColumnType("text(7)")
                 .HasColumnName("colorcode");
@@ -329,35 +312,11 @@ public partial class MainTainSenseDataContext : DbContext
                 .HasColumnName("priorityname");
         });
 
-        modelBuilder.Entity<Role>(entity =>
-        {
-            entity.ToTable("roles");
-
-            entity.Property(e => e.RoleId).HasColumnName("roleid");
-            entity.Property(e => e.RoleName)
-                .HasColumnType("text(50)")
-                .HasColumnName("rolename");
-        });
-
-        modelBuilder.Entity<RolePermission>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("rolepermissions");
-
-            entity.Property(e => e.PermissionId).HasColumnName("permissionid");
-            entity.Property(e => e.RoleId).HasColumnName("roleid");
-
-            entity.HasOne(d => d.Permission).WithMany().HasForeignKey(d => d.PermissionId);
-
-            entity.HasOne(d => d.Role).WithMany().HasForeignKey(d => d.RoleId);
-        });
-
         modelBuilder.Entity<Status>(entity =>
         {
             entity.ToTable("status");
 
-            entity.Property(e => e.StatusId).HasColumnName("statusid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.IsActive).HasColumnName("isactive");
             entity.Property(e => e.StatusDescription).HasColumnName("statusdescription");
             entity.Property(e => e.StatusName)
@@ -369,7 +328,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("teams");
 
-            entity.Property(e => e.TeamId).HasColumnName("teamid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.Department)
                 .HasColumnType("text(50)")
                 .HasColumnName("department");
@@ -394,11 +353,11 @@ public partial class MainTainSenseDataContext : DbContext
 
         modelBuilder.Entity<TemplateTask>(entity =>
         {
-            entity.HasKey(e => e.TemplateId);
+            entity.HasKey(e => e.Id);
 
             entity.ToTable("templatetasks");
 
-            entity.Property(e => e.TemplateId).HasColumnName("templateid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.ChecklistId).HasColumnName("checklistid");
             entity.Property(e => e.FrequencyId).HasColumnName("frequencyid");
             entity.Property(e => e.TemplateTasksDescription).HasColumnName("templatetasksdescription");
@@ -412,7 +371,7 @@ public partial class MainTainSenseDataContext : DbContext
         {
             entity.ToTable("users");
 
-            entity.Property(e => e.UserId).HasColumnName("userid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.DepartmentId).HasColumnName("departmentid");
             entity.Property(e => e.Email)
                 .HasColumnType("text(100)")
@@ -436,25 +395,11 @@ public partial class MainTainSenseDataContext : DbContext
                 .HasColumnName("username");
         });
 
-        modelBuilder.Entity<UserRole>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("userroles");
-
-            entity.Property(e => e.RoleId).HasColumnName("roleid");
-            entity.Property(e => e.UserId).HasColumnName("userid");
-
-            entity.HasOne(d => d.Role).WithMany().HasForeignKey(d => d.RoleId);
-
-            entity.HasOne(d => d.User).WithMany().HasForeignKey(d => d.UserId);
-        });
-
         modelBuilder.Entity<WorkOrder>(entity =>
         {
             entity.ToTable("workorders");
 
-            entity.Property(e => e.WorkOrderId).HasColumnName("workorderid");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.AssetId).HasColumnName("assetid");
             entity.Property(e => e.AssignedTeamId).HasColumnName("assignedteamid");
             entity.Property(e => e.CompletionDate).HasColumnName("completiondate");
@@ -474,7 +419,7 @@ public partial class MainTainSenseDataContext : DbContext
             entity.Property(e => e.UserId).HasColumnName("userid");
             entity.Property(e => e.WorkOrderDescription).HasColumnName("workorderdescription");
 
-            entity.HasOne(d => d.Asset).WithMany(p => p.WorkOrders).HasForeignKey(d => d.AssetId);
+            entity.HasOne(d => d.Asset).WithMany(p => p.WorkOrders).HasForeignKey(d => d.Id);
 
             entity.HasOne(d => d.Priority).WithMany(p => p.Workorders).HasForeignKey(d => d.PriorityId);
 

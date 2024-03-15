@@ -5,7 +5,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class Category 
 {
-     public int CategoryId { get; set; }
+     public int Id { get; set; }
 
     [Required]
     public string? CategoryDescription { get; set; }

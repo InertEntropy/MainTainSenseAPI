@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class User
 { 
-    public int UserId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? UserName { get; set; }

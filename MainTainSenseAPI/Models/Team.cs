@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class Team
 { 
-    public int TeamId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? TeamName { get; set; }

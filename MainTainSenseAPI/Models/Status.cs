@@ -5,7 +5,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class Status
 { 
-    public int StatusId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? StatusName { get; set; }

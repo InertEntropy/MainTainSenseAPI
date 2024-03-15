@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class Location 
 {
-    public int LocationId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? LocationName { get; set; }

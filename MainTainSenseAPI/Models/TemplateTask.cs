@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class TemplateTask
 { 
-    public int TemplateId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? TemplateTasksDescription { get; set; }

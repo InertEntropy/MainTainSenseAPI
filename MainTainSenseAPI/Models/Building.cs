@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class Building
 {
-    public int BuildingId { get; set; }
+    public int Id { get; set; }
     
     [Required]
     public string? BuildingName { get; set; }

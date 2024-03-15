@@ -4,7 +4,7 @@ namespace MainTainSenseAPI.Models;
 
 public partial class Message
 { 
-    public int MessagesId { get; set; }
+    public int Id { get; set; }
 
     public int? ParenttMessageId { get; set; }
 

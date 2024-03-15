@@ -5,7 +5,7 @@ namespace MainTainSenseAPI.Models;
 public partial class Frequency
 { 
 
-    public int FrequencyId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string? FrequencyDescription { get; set; }

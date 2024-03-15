@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MainTainSenseAPI.Filters;
 using Serilog;
 using MainTainSenseAPI.Models;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 // Add services to the container.
 builder.Services.AddDbContext<MainTainSenseDataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MTSDb")));
+
+builder.Services.AddScoped<IRoleStore<ApplicationRole>, CustomRoleStore>();
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>() // Assuming custom Identity classes
         .AddEntityFrameworkStores<MainTainSenseDataContext>();

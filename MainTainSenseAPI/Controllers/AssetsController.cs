@@ -28,7 +28,7 @@ namespace MainTainSenseAPI.Controllers
             var asset = await _context.Assets
                 .Include(a => a.AssetType)
                 .Include(a => a.Location)
-                .FirstOrDefaultAsync(a => a.AssetId == id);
+                .FirstOrDefaultAsync(a => a.Id == id);
 
             if (asset == null)
             {
@@ -54,7 +54,7 @@ namespace MainTainSenseAPI.Controllers
                 _context.Assets.Add(asset);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetAssets", new { id = asset.AssetId }, asset);
+                return CreatedAtAction("GetAssets", new { id = asset.Id }, asset);
             }
             catch (DbUpdateException ex)
             {
@@ -65,7 +65,7 @@ namespace MainTainSenseAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsset(int id, Asset asset)
         {
-            if (id != asset.AssetId)
+            if (id != asset.Id)
             {
                 return BadRequest("Asset ID mismatch");
             }

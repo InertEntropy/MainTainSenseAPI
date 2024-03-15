@@ -4,8 +4,8 @@ namespace MainTainSenseAPI.Models;
 public partial class Asset
     { 
 
-    [Range(1, int.MaxValue, ErrorMessage = "Asset Type ID must be a positive number")]
-    public int AssetId { get; set; }
+    [Range(1, int.MaxValue, ErrorMessage = "Asset ID must be a positive number")]
+    public int Id { get; set; }
 
     [Required]
     public int AssetTypeId { get; set; }
