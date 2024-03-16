@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ySN/ceuEcyBF+WkFzDvNXkEYWMkR+2jabDK5YJfJmdzPmgMdcTN97YsBDqYniEJI1W6btYsWFXZWdFH1qeURWg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\MainTainSenseBlazor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jamie\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\8.0.3\\microsoft.aspnetcore.components.webassembly.server.8.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

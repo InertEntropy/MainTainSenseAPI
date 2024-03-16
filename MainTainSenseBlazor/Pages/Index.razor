@@ -1,0 +1,36 @@
+﻿@page "/"
+
+<h1>Welcome to My Blazor App!</h1>
+
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (errorMessage != null)
+{
+    <p style="color: red;">An error occurred: @errorMessage</p>
+}
+else 
+{
+    <p>Your content here</p>
+}
+
+@code {
+    private bool isLoading = true;
+    private string? errorMessage = null; 
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Simulate loading delay 
+            await Task.Delay(2000);
+            isLoading = false;
+        }
+        catch (Exception ex)
+        {
+            isLoading = false;
+            errorMessage = ex.Message;
+        }
+    }
+}

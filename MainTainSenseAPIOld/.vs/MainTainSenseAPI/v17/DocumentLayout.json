@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseapi\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|solutionrelative:basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseapi\\models\\createroleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|solutionrelative:models\\createroleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseapi\\models\\customrolestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|solutionrelative:models\\customrolestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseapi\\controllers\\createrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|solutionrelative:controllers\\createrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseapi\\models\\rolemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416C0125-196D-477D-9CF5-92C052E8A2DE}|MainTainSenseAPI.csproj|solutionrelative:models\\rolemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateRoleViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Models\\CreateRoleViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\CreateRoleViewModel.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Models\\CreateRoleViewModel.cs",
+              "RelativeToolTip": "Models\\CreateRoleViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T22:09:31.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseController.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\BaseController.cs",
+              "RelativeDocumentMoniker": "BaseController.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\BaseController.cs",
+              "RelativeToolTip": "BaseController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T21:49:24.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAjwBcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T21:39:22.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateRoleController.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Controllers\\CreateRoleController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CreateRoleController.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Controllers\\CreateRoleController.cs",
+              "RelativeToolTip": "Controllers\\CreateRoleController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T21:25:32.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RoleManager.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Models\\RoleManager.cs",
+              "RelativeDocumentMoniker": "Models\\RoleManager.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Models\\RoleManager.cs",
+              "RelativeToolTip": "Models\\RoleManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T21:25:18.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomRoleStore.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Models\\CustomRoleStore.cs",
+              "RelativeDocumentMoniker": "Models\\CustomRoleStore.cs",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseAPI\\Models\\CustomRoleStore.cs",
+              "RelativeToolTip": "Models\\CustomRoleStore.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T19:47:23.377Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

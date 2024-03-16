@@ -1,0 +1,44 @@
+﻿@page "/"
+@using MainTainSenseBlazor.Models
+@using MainTainSenseBlazor.Pages
+@inject HttpClient Http
+
+<h3>User Registration</h3>
+
+<EditForm Model="@user" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+
+    <input type="text" @bind-value="user.FirstName" placeholder="First Name" />
+    <input type="text" @bind-value="user.LastName" placeholder="Last Name" />
+    <input type="email" @bind-value="user.Email" placeholder="Email" />
+
+    <button type="submit">Register</button>
+    <p>@message</p>
+</EditForm>
+
+
+@code {
+    private UserViewModel user = new UserViewModel();
+    private string message = "";
+    private string username = ""; // For storing the retrieved username
+
+    private async Task HandleSubmit()
+    {
+        
+        Console.WriteLine("HandleSubmit started"); // Add this line
+        var response2 = await Http.PostAsJsonAsync("http://localhost:5255/api/Users", user);
+        Console.WriteLine($"API Response Status Code: {response2.StatusCode}"); // Add this line
+
+        var response = await Http.PostAsJsonAsync("http://localhost:5255/api/Users", user);
+
+        if (response.IsSuccessStatusCode)
+        {
+            username = await response.Content.ReadAsStringAsync(); // Extract username
+            message = $"Retrieved username: {username}";  // Update message
+        }
+        else
+        {
+            message = "Registration Failed! Please try again.";
+        }
+    }
+}

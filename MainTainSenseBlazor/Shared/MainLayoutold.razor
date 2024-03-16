@@ -1,0 +1,12 @@
+﻿@inherits LayoutComponentBase
+
+<nav class="navbar">
+</nav>
+
+<main>
+    @Body
+</main>
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; } // Add this
+}

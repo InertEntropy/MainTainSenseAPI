@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainTainSenseAPI", "MainTainSenseAPI.csproj", "{416C0125-196D-477D-9CF5-92C052E8A2DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainTainSenseAPI", "MainTainSenseAPI.csproj", "{69647D31-1F23-49F2-99C5-43BE17403BBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{416C0125-196D-477D-9CF5-92C052E8A2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{416C0125-196D-477D-9CF5-92C052E8A2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{416C0125-196D-477D-9CF5-92C052E8A2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{416C0125-196D-477D-9CF5-92C052E8A2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69647D31-1F23-49F2-99C5-43BE17403BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69647D31-1F23-49F2-99C5-43BE17403BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69647D31-1F23-49F2-99C5-43BE17403BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69647D31-1F23-49F2-99C5-43BE17403BBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {939D6674-1B5C-4462-A369-0CEC56BA0AAA}
+		SolutionGuid = {4BD05E30-EF69-4EEA-A9C9-510ECBD86122}
 	EndGlobalSection
 EndGlobal

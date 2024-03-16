@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MainTainSenseBlazor.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MainTainSenseBlazor.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\wwwroot\\css\\blazor-ui.css",
+      "PackagePath": "staticwebassets\\css\\blazor-ui.css"
+    },
+    {
+      "Id": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MainTainSenseBlazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MainTainSenseBlazor.props",
+      "PackagePath": "build\\MainTainSenseBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MainTainSenseBlazor.props",
+      "PackagePath": "buildMultiTargeting\\MainTainSenseBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MainTainSenseBlazor.props",
+      "PackagePath": "buildTransitive\\MainTainSenseBlazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

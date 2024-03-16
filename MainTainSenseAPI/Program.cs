@@ -1,48 +1,37 @@
-using Microsoft.EntityFrameworkCore;
-using MainTainSenseAPI.Filters;
-using Serilog;
+using MainTainSenseAPI.Data;
 using MainTainSenseAPI.Models;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var logger = Log.Logger;
-
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 // Add services to the container.
-builder.Services.AddDbContext<MainTainSenseDataContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("MTSDb")));
-
-builder.Services.AddScoped<IRoleStore<ApplicationRole>, CustomRoleStore>();
-
-builder.Services.AddIdentity<ApplicationUser, ApplicationRole>() // Assuming custom Identity classes
-        .AddEntityFrameworkStores<MainTainSenseDataContext>();
-
-builder.Services.AddAuthorization(options =>
-{
-    // You'll define your authorization policies here 
-});
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add(new AllowAllAuthorizationFilter()); // Your filter here
-    options.Filters.Add(new GlobalExceptionFilter(logger));
-});
-
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddLogging();
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSignalR();
+
+// Add Windows Authentication
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate();
+
+// Add Database Context configuration
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite("Data Source=Data/MainTainSense.db")
+);
+
+// Add Identity Configuration 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddCors();
 
 var app = builder.Build();
-
-// Configure Serilog
-Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration) // Read from appsettings.json
-    .Enrich.FromLogContext()
-    .WriteTo.Console()
-    .WriteTo.File("Logs/myapp-{Date}.txt")
-    .CreateLogger();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -53,9 +42,15 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
 
+//app.UseAuthentication();
+//app.UseAuthorization();
+app.MapBlazorHub(); 
 app.MapControllers();
 
 app.Run();
