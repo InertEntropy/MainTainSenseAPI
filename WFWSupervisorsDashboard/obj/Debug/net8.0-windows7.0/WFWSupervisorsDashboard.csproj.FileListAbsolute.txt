@@ -1,9 +1,0 @@
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\WFWSupervisorsDashboard.csproj.AssemblyReference.cache
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\Employees.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\Machines.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\MainWindow.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\ModifyShifts.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\SettingsWindow.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\App.g.cs
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\WFWSupervisorsDashboard_MarkupCompile.cache
-C:\Users\jamie\source\repos\WFWSupervisorsDashboard\obj\Debug\net8.0-windows7.0\WFWSupervisorsDashboard_MarkupCompile.lref
