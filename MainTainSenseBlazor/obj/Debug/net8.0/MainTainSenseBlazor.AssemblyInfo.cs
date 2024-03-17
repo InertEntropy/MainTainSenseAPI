@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MainTainSenseBlazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d815b365d130945533e520e0d53d4c7874abf8c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f4d2eb650e2187d9d45a344ef81bb3c38d77521")]
 [assembly: System.Reflection.AssemblyProductAttribute("MainTainSenseBlazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MainTainSenseBlazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

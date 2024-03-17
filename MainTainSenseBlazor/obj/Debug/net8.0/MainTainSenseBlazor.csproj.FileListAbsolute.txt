@@ -17,6 +17,7 @@ C:\Users\jamie\source\repos\MainTainSenseBlazor\bin\Debug\net8.0\MainTainSenseBl
 C:\Users\jamie\source\repos\MainTainSenseBlazor\bin\Debug\net8.0\MainTainSenseBlazor.runtimeconfig.json
 C:\Users\jamie\source\repos\MainTainSenseBlazor\bin\Debug\net8.0\MainTainSenseBlazor.dll
 C:\Users\jamie\source\repos\MainTainSenseBlazor\bin\Debug\net8.0\MainTainSenseBlazor.pdb
+C:\Users\jamie\source\repos\MainTainSenseBlazor\bin\Debug\net8.0\BootstrapBlazor.dll
 C:\Users\jamie\source\repos\MainTainSenseBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.Components.WebAssembly.Server.dll
 C:\Users\jamie\source\repos\MainTainSenseBlazor\obj\Debug\net8.0\MainTainSenseBlazor.csproj.AssemblyReference.cache
 C:\Users\jamie\source\repos\MainTainSenseBlazor\obj\Debug\net8.0\MainTainSenseBlazor.GeneratedMSBuildEditorConfig.editorconfig

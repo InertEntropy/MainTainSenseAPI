@@ -3,36 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\registration.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:pages\\registration.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\maintainsenseblazor.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:maintainsenseblazor.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\models\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:models\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -55,103 +43,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Index.razor",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\Index.razor",
-              "RelativeDocumentMoniker": "Pages\\Index.razor",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\Index.razor",
-              "RelativeToolTip": "Pages\\Index.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T14:55:09.957Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Pages\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Layout.cshtml",
-              "RelativeToolTip": "Pages\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T14:50:39.802Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Host.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Host.cshtml",
-              "RelativeDocumentMoniker": "Pages\\_Host.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Host.cshtml",
-              "RelativeToolTip": "Pages\\_Host.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T13:41:54.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Error.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\Error.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Error.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\Error.cshtml",
-              "RelativeToolTip": "Pages\\Error.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T13:30:24.427Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T11:55:26.633Z",
+              "WhenOpened": "2024-03-16T17:49:19.149Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Models\\UserViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserViewModel.cs",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Models\\UserViewModel.cs",
-              "RelativeToolTip": "Models\\UserViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T09:24:47.69Z"
+              "DocumentIndex": 4,
+              "Title": "_Host.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Host.cshtml",
+              "RelativeDocumentMoniker": "Pages\\_Host.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Host.cshtml",
+              "RelativeToolTip": "Pages\\_Host.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-16T17:11:40.296Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MainTainSenseBlazor.csproj",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\MainTainSenseBlazor.csproj",
-              "RelativeDocumentMoniker": "MainTainSenseBlazor.csproj",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\MainTainSenseBlazor.csproj",
-              "RelativeToolTip": "MainTainSenseBlazor.csproj",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Pages\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\_Layout.cshtml",
+              "RelativeToolTip": "Pages\\_Layout.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-16T09:22:58.598Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-16T17:11:33.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Shared\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Shared\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Shared\\MainLayout.razor",
+              "RelativeToolTip": "Shared\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-16T16:19:07.445Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Registration.razor",
-              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\Registration.razor",
-              "RelativeDocumentMoniker": "Pages\\Registration.razor",
-              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Pages\\Registration.razor",
-              "RelativeToolTip": "Pages\\Registration.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAXAAAA",
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\App.razor",
+              "RelativeDocumentMoniker": "App.razor",
+              "ToolTip": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\App.razor",
+              "RelativeToolTip": "App.razor",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T09:22:03.676Z",
+              "WhenOpened": "2024-03-16T16:18:19.762Z",
               "EditorCaption": ""
             }
           ]

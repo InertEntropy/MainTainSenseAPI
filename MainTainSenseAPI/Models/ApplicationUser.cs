@@ -23,9 +23,12 @@ namespace MainTainSenseAPI.Models
 
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-
-        // Add more user-specific properties as needed:
-        public string? Department { get; set; }
-        public string? JobTitle { get; set; }
+        public int JobTitleId { get; set; }
+        public JobTitle? JobTitle { get; set; }
+        public int DepartmentId { get; set; }
+        public Department? Department { get; set; }
+        public int? IsActive { get; set; }
+        public DateTime LastUpdated { get; set; }
+        public string UpdatedBy { get; set; } = string.Empty;
     }
 }

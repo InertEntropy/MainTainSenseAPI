@@ -1,16 +1,26 @@
+using MainTainSenseAPI;
 using MainTainSenseAPI.Data;
+using MainTainSenseAPI.Filters;
 using MainTainSenseAPI.Models;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(AuditActionFilter));
+});
+
+builder.Services.AddHttpContextAccessor();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSignalR();
@@ -31,7 +41,20 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.AddCors();
 
+//builder.Services.AddScoped<AuditActionFilter>();
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .ReadFrom.Configuration(ctx.Configuration));
+
+builder.Services.AddScoped<Serilog.ILogger>((_) => {
+    // Create your Serilog logger with desired configuration
+    return new LoggerConfiguration()
+           .ReadFrom.Configuration(builder.Configuration)
+           .WriteTo.Console()
+           .CreateLogger();
+});
 var app = builder.Build();
+app.UseMiddleware<CorrelationIdMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -48,9 +71,12 @@ app.UseCors(builder => builder
     .AllowAnyHeader()
 );
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapBlazorHub(); 
 app.MapControllers();
+
+app.UseSerilogRequestLogging();
 
 app.Run();

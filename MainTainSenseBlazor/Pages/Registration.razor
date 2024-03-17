@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/Registration"
 @using MainTainSenseBlazor.Models
 @using MainTainSenseBlazor.Pages
 @inject HttpClient Http
@@ -19,7 +19,7 @@
 
 @code {
     private UserViewModel user = new UserViewModel();
-    private string message = "";
+    private string message = ""; // C:\Users\jamie\.nuget\packages\bootstrap\5.3.3\content\Content\bootstrap.min.css
     private string username = ""; // For storing the retrieved username
 
     private async Task HandleSubmit()
@@ -29,16 +29,5 @@
         var response2 = await Http.PostAsJsonAsync("http://localhost:5255/api/Users", user);
         Console.WriteLine($"API Response Status Code: {response2.StatusCode}"); // Add this line
 
-        var response = await Http.PostAsJsonAsync("http://localhost:5255/api/Users", user);
-
-        if (response.IsSuccessStatusCode)
-        {
-            username = await response.Content.ReadAsStringAsync(); // Extract username
-            message = $"Retrieved username: {username}";  // Update message
-        }
-        else
-        {
-            message = "Registration Failed! Please try again.";
-        }
     }
 }

@@ -1,7 +1,29 @@
-﻿@using MainTainSenseBlazor.Pages
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Routing
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<MainLayout> 
-    <Registration />  
-</MainLayout>
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" Roles="Admin, User" DefaultLayout="@typeof(MainLayout)" />
+            </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
 
+@inject NavigationManager Navigation
 
+@code {
+    protected async Task OnInitializedAsync()
+    {
+        if ((await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated)
+        {
+            // Potentially fetch user roles or additional information here 
+            // based on authenticated user
+        }
+    }
+}
