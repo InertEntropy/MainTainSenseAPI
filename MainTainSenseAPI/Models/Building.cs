@@ -1,0 +1,15 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MainTainSenseAPI.Models;
+
+public partial class Building : BaseModel
+{ 
+    public int Id { get; set; }
+
+    [Required]
+    public string? BuildingName { get; set; }
+
+    public string? BuildingDescription { get; set; }
+
+    public virtual ICollection<Location> Locations { get; set; } = [];
+}

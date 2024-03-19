@@ -15,6 +15,10 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(typeof(AuditActionFilter));
 });
 
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(new IsActiveFilterAttribute());
+});
 builder.Services.AddHttpContextAccessor();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,8 +35,7 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
 
 // Add Database Context configuration
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=Data/MainTainSense.db")
-);
+    options.UseSqlite(builder.Configuration.GetConnectionString("MTSDb")));
 
 // Add Identity Configuration 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

@@ -3,6 +3,7 @@ using System;
 using MainTainSenseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainTainSenseAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318202515_AllModels")]
+    partial class AllModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -686,7 +689,7 @@ namespace MainTainSenseAPI.Migrations
 
             modelBuilder.Entity("MainTainSenseAPI.Models.TeamMember", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int?>("TeamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -696,7 +699,7 @@ namespace MainTainSenseAPI.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TeamId")
+                    b.Property<int>("TeamId1")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UpdatedBy")
@@ -705,9 +708,9 @@ namespace MainTainSenseAPI.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("TeamId");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("TeamId1");
 
                     b.HasIndex("UserId");
 
@@ -1136,7 +1139,9 @@ namespace MainTainSenseAPI.Migrations
                 {
                     b.HasOne("MainTainSenseAPI.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MainTainSenseAPI.Models.ApplicationUser", "User")
                         .WithMany("TeamMembers")

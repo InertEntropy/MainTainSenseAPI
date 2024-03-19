@@ -8,5 +8,6 @@ namespace MainTainSenseAPI.Models
         public DateTime LastUpdated { get; set; }
         public string UpdatedBy { get; set; } = string.Empty;
         public virtual ICollection<Permission> Permissions { get; set; } = new HashSet<Permission>(); // Initialize to avoid null issues
+        public ICollection<ApplicationUser>? Users { get; set; }
     }
 }
