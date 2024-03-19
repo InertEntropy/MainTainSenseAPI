@@ -2,7 +2,7 @@
 {
     public abstract class BaseModel
     {
-        public int IsActive { get; set; }
+        public YesNo IsActive { get; set; } = YesNo.No;
         public DateTime LastUpdated { get; set; }
         public string? UpdatedBy { get; set; }
     }

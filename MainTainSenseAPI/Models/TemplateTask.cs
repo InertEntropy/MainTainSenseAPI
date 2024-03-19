@@ -6,7 +6,8 @@ public partial class TemplateTask : BaseModel
 {
     public int Id { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Please provide a description.")]
+    [StringLength(50, ErrorMessage = "Description should be between 2 and 50 characters long.", MinimumLength = 2)]
     public string? TemplateTasksDescription { get; set; }
 
     public int? FrequencyId { get; set; }

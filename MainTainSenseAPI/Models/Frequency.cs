@@ -7,11 +7,12 @@ public partial class Frequency : BaseModel
 
     public int Id { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Please provide a name for the asset.")]
+    [StringLength(50, ErrorMessage = "Asset Name should be between 2 and 50 characters long.", MinimumLength = 2)]
     public string? FrequencyDescription { get; set; }
 
     [Required]
-    public int? IntervalValue { get; set; }
+    public int? IntervalValue { get; set; } = default;
 
     [Required]
     public string? TimeUnit { get; set; }

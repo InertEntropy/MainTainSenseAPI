@@ -13,7 +13,7 @@ public partial class Asset : BaseModel
     public virtual required AssetType AssetType { get; set; }
 
     [StringLength(50)]
-    public string? Serialnumber { get; set; }
+    public string Serialnumber { get; set; } = "";
 
     public int? AssetLocationId { get; set; }
 
@@ -27,7 +27,7 @@ public partial class Asset : BaseModel
     [StringLength(50, ErrorMessage = "Asset Name should be between 2 and 50 characters long.", MinimumLength = 2)]
     public string? AssetName { get; set; }
 
-    public string? InstallDate { get; set; }
+    public string? InstallDate { get; set; } = "";
 
     public Location? Location { get; set; }
 

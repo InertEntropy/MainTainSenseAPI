@@ -2,7 +2,6 @@
 using MainTainSenseAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace MainTainSenseAPI.Controllers
 {
@@ -20,15 +19,34 @@ namespace MainTainSenseAPI.Controllers
 
         // GET: api/Asset
         [HttpGet]
-        public async Task<IActionResult> GetAssets()
+        public async Task<IActionResult> GetPagedAssets(int pageNumber = 1, int pageSize = 10)
         {
+            if (pageNumber < 1 || pageSize <= 0)
+            {
+                return BadRequest("Invalid page number or page size");
+            }
+
+            int totalCount = await _context.Assets.CountAsync();
+            int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
             var assets = await _context.Assets
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .Include(a => a.AssetType)
                 .Include(a => a.Location)
                 .Include(a => a.Assetstatus)
                 .ToListAsync();
 
-            return Ok(assets);
+            var response = new PagedResponse<Asset>
+            {
+                CurrentPage = pageNumber,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Items = assets
+            };
+
+            return Ok(response);
         }
 
         // GET: api/Asset/5
