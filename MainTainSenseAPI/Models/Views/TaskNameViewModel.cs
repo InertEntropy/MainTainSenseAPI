@@ -1,6 +1,6 @@
-﻿namespace MainTainSenseAPI.Models
+﻿namespace MainTainSenseAPI.Models.Views
 {
-    public class TaskName : BaseModel
+    public class TaskName : BaseViewModels
     {
         public int Id { get; set; } //Primary Key
         public int RoleId { get; set; } // Foreign Key

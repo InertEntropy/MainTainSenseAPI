@@ -1,5 +1,6 @@
 ﻿using MainTainSenseAPI.Data;
 using MainTainSenseAPI.Models;
+using MainTainSenseAPI.Models.Views;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
