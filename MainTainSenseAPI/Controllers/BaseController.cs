@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Data.Common;
 
 namespace MainTainSenseAPI.Controllers
 {
@@ -16,6 +16,7 @@ namespace MainTainSenseAPI.Controllers
         protected readonly IConfiguration configuration;
         public Func<HttpContext, string> CurrentUserName { get; }
 
+
         // Single Constructor
         protected BaseController(ILogger<BaseController> logger, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
             : base() // Call the base constructor of ControllerBase
@@ -25,7 +26,7 @@ namespace MainTainSenseAPI.Controllers
 
             // Initialize CurrentUserName
             CurrentUserName = (context) => {
-                var username = context.User?.Identity?.Name;
+                var username = context?.User?.Identity?.Name; // Null-conditional access
                 return username ?? "Unknown User";
             };
         }
@@ -36,9 +37,12 @@ namespace MainTainSenseAPI.Controllers
             return !string.IsNullOrEmpty(baseUrl) ? baseUrl : "http://default-base-url";
         }
 
-        protected IActionResult HandleDatabaseException(DbUpdateException ex, ApplicationUser? role = null)
+        protected virtual IActionResult HandleException(Exception ex)
         {
-            role ??= new ApplicationUser();
+            if (ex is DbException dbException)
+            {
+                return HandleDatabaseException(dbException, 0, null); // Provide defaults for entityId and role
+            }
 
             if (ex.InnerException is SqliteException sqliteEx)
             {
@@ -49,7 +53,7 @@ namespace MainTainSenseAPI.Controllers
                     case 19: // Constraint violation
                         problemDetails.Status = 400; // BadRequest
                         problemDetails.Title = "Cannot create";
-                        problemDetails.Detail = "Cannot create role because it's assigned to existing users.";
+                        problemDetails.Detail = "Cannot create already exists";
                         break;
 
                     case 1: // Database locked
@@ -80,13 +84,25 @@ namespace MainTainSenseAPI.Controllers
                 logger.LogError(ex, "Database error: {details}", problemDetails.Detail);
                 return new ObjectResult(problemDetails);
             }
+            else if (ex is not null)
+            {
+                // Catch-all for more generic database errors
+                logger.LogError(ex, "A database error occurred: {errorMessage}", ex.Message);
+                return StatusCode(500, "A database error occurred. Please try again or contact support.");
+            }
             else
             {
+                // Existing fallback 
                 logger.LogError(ex, "Unhandled Database Exception");
                 return StatusCode(500, "Error processing request");
             }
         }
-
+        protected virtual IActionResult HandleDatabaseException(DbException ex, int entityId, ApplicationUser? role = null)
+        {
+            // Default database exception handling 
+            logger.LogError(ex, "Database exception occurred.");
+            return StatusCode(500, "A database error occurred.");
+        }
         protected IActionResult HandleIdentityError(IdentityResult identityResult)
         {
             if (!identityResult.Succeeded)
@@ -133,6 +149,7 @@ namespace MainTainSenseAPI.Controllers
             logger.LogWarning("Validation errors occurred: {errors}", problemDetails.Extensions["errors"]);
             return BadRequest(problemDetails);
         }
+        
         protected virtual IActionResult HandleConcurrencyError(int entityId)
         {
             var problemDetails = new ProblemDetails

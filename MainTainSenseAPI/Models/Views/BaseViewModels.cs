@@ -2,8 +2,8 @@
 {
     public class BaseViewModels
     {
-        public int IsActive { get; set; } = 0;
-        public DateTime LastUpdated { get; set; }
-        public string? UpdatedBy { get; set; } = null;
+        public int IsActive { get; set; } = 1;
+        public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
+        public string? UpdatedBy { get; set; } = "Default";
     }
 }

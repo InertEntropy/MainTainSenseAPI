@@ -20,12 +20,48 @@ namespace MainTainSenseAPI.Controllers
 
         // 1. Get all permissions
         [HttpGet("api/permissions")]
-        public async Task<IActionResult> GetPermissions()
+        public async Task<IActionResult> GetPagedPermissions(int pageNumber = 1, int pageSize = 10)
         {
-            var permissions = await _context.Permissions
-                                        .Select(p => new { p.Id, p.Name, p.Description })
-                                        .ToListAsync();
-            return Ok(permissions);
+            if (pageNumber < 1 || pageSize <= 0)
+            {
+                return BadRequest("Invalid page number or page size");
+            }
+
+            try
+            {
+                var query = _context.Permissions.Select(p => new { p.Id, p.Name, p.Description });
+
+                int totalCount = await query.CountAsync();
+                int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+                var permissions = await query
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
+
+                var response = new PagedResponse<Permission>
+                {
+                    CurrentPage = pageNumber,
+                    PageSize = pageSize,
+                    TotalCount = totalCount,
+                    TotalPages = totalPages,
+                    Items = (IEnumerable<Permission>)permissions
+                };
+
+                return Ok(response);
+
+            }
+            catch (DbUpdateException ex)
+            {
+                return HandleDatabaseException(ex); // Handle database errors
+            }
+            catch (Exception ex)
+            {
+                  // Log the exception for debugging
+                  logger.LogError(ex, "Error fetching paged permissions");
+                  return StatusCode(500, "A database error occurred.");
+
+            }
         }
 
         // 2. Create a new permission
@@ -47,7 +83,7 @@ namespace MainTainSenseAPI.Controllers
             await _context.SaveChangesAsync();
 
             logger.LogInformation ("Permission created: {Name}", permission.Name); // Log
-            return CreatedAtAction(nameof(GetPermissions), new { id = permission.Id }, permission);
+            return CreatedAtAction(nameof(GetPagedPermissions), new { id = permission.Id }, permission);
         }
         [HttpPut("api/permissions/{permissionId}")]
         public async Task<IActionResult> UpdatePermission(int permissionId, [FromBody] PermissionsViewModel model)

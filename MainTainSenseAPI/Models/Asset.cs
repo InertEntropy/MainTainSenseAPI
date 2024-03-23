@@ -10,15 +10,14 @@ public partial class Asset : BaseModel
     [Required]
     public int AssetTypeId { get; set; }
 
-    public virtual required AssetType AssetType { get; set; }
+    public required AssetType? AssetType { get; set; }
 
     [StringLength(50)]
-    public string Serialnumber { get; set; } = "";
+    public string? Serialnumber { get; set; } = "  ";
 
     public int? AssetLocationId { get; set; }
 
-    [Required]
-    public AssetStatus Assetstatus { get; set; }
+    public required AssetStatus Assetstatus { get; set; }
 
     [StringLength(100, ErrorMessage = "Description cannot exceed 100 characters.")]
     public string? AssetDescription { get; set; }

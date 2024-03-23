@@ -1,41 +1,75 @@
 ﻿using MainTainSenseAPI.Data;
 using MainTainSenseAPI.Models;
+using MainTainSenseAPI.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Common; // For ValidationAttributes
 
 namespace MainTainSenseAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AssetController : BaseController
+    public class AssetsController : BaseController
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AssetController(ILogger<AssetController> logger, IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public AssetsController(ILogger<AssetsController> logger, IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
             : base(logger, configuration, httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        // GET: api/Asset
+        // GET: api/Assets 
         [HttpGet]
-        public async Task<IActionResult> GetPagedAssets(int pageNumber = 1, int pageSize = 10)
+        public async Task<ActionResult<PagedResponse<Asset>>> GetAssets(
+            int pageNumber = 1,
+            int pageSize = 10,
+            int? assetTypeId = null,
+            int? locationId = null,
+            int? assetStatusId = null,
+            int? isActive = null
+        )
+
         {
             if (pageNumber < 1 || pageSize <= 0)
             {
                 return BadRequest("Invalid page number or page size");
             }
 
-            int totalCount = await _context.Assets.CountAsync();
+            var query = _context.Assets
+                     .Include(a => a.AssetType)
+                     .Include(a => a.Location)
+                     .Include(a => a.Assetstatus);
+
+            if (assetTypeId.HasValue)
+            {
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Asset, AssetStatus>)query.Where(a => a.AssetTypeId == assetTypeId);
+            }
+
+            if (locationId.HasValue)
+            {
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Asset, AssetStatus>)query.Where(a => a.AssetLocationId == locationId);
+            }
+
+            if (assetStatusId.HasValue)
+            {
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Asset, AssetStatus>)query.Where(a => a.Assetstatus == (AssetStatus)assetStatusId);
+            }
+
+            if (isActive.HasValue)
+            {
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Asset, AssetStatus>)query.Where(a => a.IsActive == (isActive.Value == 1 ? YesNo.Yes : YesNo.No));
+            }
+
+            var totalCount = await query.CountAsync();
             int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
-            var assets = await _context.Assets
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .Include(a => a.AssetType)
-                .Include(a => a.Location)
-                .Include(a => a.Assetstatus)
-                .ToListAsync();
+            var assets = await query
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
 
             var response = new PagedResponse<Asset>
             {
@@ -43,21 +77,25 @@ namespace MainTainSenseAPI.Controllers
                 PageSize = pageSize,
                 TotalCount = totalCount,
                 TotalPages = totalPages,
-                Items = assets
+                Items = assets,
+                IsActive = assets.FirstOrDefault()?.IsActive == YesNo.Yes ? 1 : 0,
+                LastUpdated = assets.FirstOrDefault()?.LastUpdated,
+                UpdatedBy = assets.FirstOrDefault()?.UpdatedBy
             };
 
             return Ok(response);
         }
 
-        // GET: api/Asset/5
+        // GET: api/Assets/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsset(int id)
+        public async Task<ActionResult<Asset>> GetAsset(int id)
         {
             var asset = await _context.Assets
-                .Include(a => a.AssetType)
-                .Include(a => a.Location)
-                .Include(a => a.Assetstatus)
-                .FirstOrDefaultAsync(a => a.Id == id);
+                                      .Include(a => a.AssetType)
+                                      .Include(a => a.Location)
+                                      .Include(a => a.Assetstatus)
+                                      .Include(a => a.IsActive)
+                                      .FirstOrDefaultAsync(a => a.Id == id);
 
             if (asset == null)
             {
@@ -67,55 +105,151 @@ namespace MainTainSenseAPI.Controllers
             return Ok(asset);
         }
 
-        // POST: api/Asset
+        // POST: api/Assets
         [HttpPost]
-        public async Task<IActionResult> CreateAsset([FromBody] Asset asset)
+        public async Task<IActionResult> CreateAsset([FromBody] AssetViewModels assetViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return HandleValidationErrors(ModelState); // Handle validation errors in BaseController
-            }
-
-            _context.Assets.Add(asset);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetAsset), new { id = asset.Id }, asset);
-        }
-
-        // PUT: api/Asset/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsset(int id, [FromBody] Asset asset)
-        {
-            if (id != asset.Id)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (!ModelState.IsValid)
             {
                 return HandleValidationErrors(ModelState);
             }
 
-            _context.Entry(asset).State = EntityState.Modified;
+            var assetStatus = (AssetStatus)Enum.Parse(typeof(AssetStatus), assetViewModel.AssetStatusId.ToString());
+            var assetType = await _context.AssetTypes.FindAsync(assetViewModel.AssetTypeId);
+            var assetLocation = await _context.Locations.FindAsync(assetViewModel.AssetLocationId);
+            var asset = new Asset
+            {
+                AssetType = assetType, // Assign the fetched AssetType object
+                AssetName = assetViewModel.AssetName,
+                Serialnumber = assetViewModel.Serialnumber,
+                Location = assetLocation,
+                Assetstatus = assetStatus,
+                AssetDescription = assetViewModel.AssetDescription,
+                InstallDate = assetViewModel.InstallDate,
+                // BaseModel properties
+                IsActive = YesNo.Yes, // Set as active by default
+                LastUpdated = DateTime.UtcNow,
+                UpdatedBy = _httpContextAccessor.HttpContext != null
+                            ? CurrentUserName(_httpContextAccessor.HttpContext)
+                            :"Unknown User"
 
-            logger.LogInformation("Asset Updated: {Name}", asset.AssetName);
-            // 4. Save changes
+            };
             try
-            { 
+            {
+                _context.Assets.Add(asset);
                 await _context.SaveChangesAsync();
+
+                logger.LogInformation("Asset created with ID: {assetId}", asset.Id);
+                return CreatedAtAction(nameof(GetAsset), new { id = asset.Id }, asset);
+            }
+            catch (DbException ex)
+            {
+                logger.LogError(ex, "Database error while creating asset.");
+                return StatusCode(500, "Error saving asset to database.");
             }
             catch (DbUpdateConcurrencyException)
             {
-                return HandleConcurrencyError(asset.Id); // Delegate to BaseController 
+                var result = HandleConcurrencyError(asset.Id);
+                if (result is ViewResult viewResult)
+                {
+                    viewResult.ViewData.Model = assetViewModel; // Pass the model back to the view
+                    return viewResult;
+                }
             }
-            catch (DbUpdateException ex)
+            return StatusCode(500, "An unhandled error occurred.");
+        }
+    
+
+        // PUT: api/Assets/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsset(int id, [FromBody] AssetViewModels assetViewModel)
+        {
+            if (id != assetViewModel.Id)
             {
-                return HandleDatabaseException(ex);  // Pass the exception 
+                return BadRequest("ID mismatch");
             }
 
-            // 5. Success Response (unchanged)
+            if (!ModelState.IsValid)
+            {
+                // Repopulate dropdown lists
+                assetViewModel.AvailableAssetTypes = await _context.AssetTypes
+                                                          .Select(at => new Models.Views.SelectListItem
+                                                          {
+                                                              Value = at.Id,
+                                                              Text = at.AssetTypeName
+                                                          })
+                                                          .ToListAsync();
+
+                assetViewModel.AvailableLocations = await _context.Locations
+                                                          .Select(at => new Models.Views.SelectListItem
+                                                          {
+                                                              Value = at.Id,
+                                                              Text = at.LocationName
+                                                          })
+                                                          .ToListAsync();
+
+                assetViewModel.AvailableAssetStatuses = Enum.GetValues<AssetStatus>()
+                                              .Select(status => new Models.Views.SelectListItem
+                                              {
+                                                  Value = ((int)status),
+                                                  Text = status.ToString()
+                                              })
+                                              .ToList(); 
+
+                return BadRequest(ModelState);
+            }
+
+            // Fetch existing asset
+            var asset = await _context.Assets
+                                      .Include(a => a.AssetType)
+                                      .Include(a => a.Location)
+                                      .Include(a => a.Assetstatus)
+                                      .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (asset == null)
+            {
+                return NotFound("Asset not found");
+            }
+            var assetStatus = (AssetStatus)Enum.Parse(typeof(AssetStatus), assetViewModel.AssetStatusId.ToString());
+            var assetType = await _context.AssetTypes.FindAsync(assetViewModel.AssetTypeId);
+            var assetLocation = await _context.Locations.FindAsync(assetViewModel.AssetLocationId);
+
+            asset.AssetType = assetType;
+            asset.Location = assetLocation;
+            asset.Assetstatus = assetStatus;
+            asset.AssetName = assetViewModel.AssetName;
+            asset.Serialnumber = assetViewModel.Serialnumber;
+            asset.AssetDescription = assetViewModel.AssetDescription;
+            asset.InstallDate = assetViewModel.InstallDate;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbException ex)
+            {
+                logger.LogError(ex, "Database error while updating asset.");
+                return StatusCode(500, "Error saving updated asset to database.");
+            }
+
             return NoContent();
         }
 
+        // DELETE: api/Assets/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsset(int id)
+        {
+            var asset = await _context.Assets.FindAsync(id);
+            if (asset == null)
+            {
+                return NotFound("Asset not found");
+            }
+
+            _context.Assets.Remove(asset);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
+

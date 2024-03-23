@@ -20,13 +20,15 @@ namespace MainTainSenseAPI.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            // Apply to all entities with an 'IsActive' property
-            foreach (var entry in _dbContext.ChangeTracker.Entries())
+            if (_dbContext != null)
             {
-                if (entry.Entity is BaseModel baseModel && baseModel.IsActive != 1)
+                foreach (var entry in _dbContext.ChangeTracker.Entries())
                 {
-                    context.Result = new BadRequestObjectResult("Entity is not active");
-                    return;
+                    if (entry.Entity is BaseModel baseModel && baseModel.IsActive != YesNo.No)
+                    {
+                        context.Result = new BadRequestObjectResult("Entity is not active");
+                        return;
+                    }
                 }
             }
 

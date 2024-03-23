@@ -7,5 +7,8 @@
         public int TotalCount { get; set; }
         public int TotalPages { get; set; }
         public IEnumerable<T>? Items { get; set; }
+        public int? IsActive { get; set; }
+        public DateTime? LastUpdated { get; set; }
+        public string? UpdatedBy { get; set; }
     }
 }
