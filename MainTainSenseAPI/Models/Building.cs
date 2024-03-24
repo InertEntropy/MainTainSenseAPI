@@ -10,6 +10,8 @@ public partial class Building : BaseModel
     [StringLength(50, ErrorMessage = "Building name should be between 2 and 50 characters long.", MinimumLength = 2)]
     public string? BuildingName { get; set; } = "  ";
 
+    [Required(ErrorMessage = "Please provide a name for the building.")]
+    [StringLength(50, ErrorMessage = "Building name should be between 2 and 50 characters long.", MinimumLength = 2)]
     public string BuildingDescription { get; set; } = "";
 
     public virtual ICollection<Location> Locations { get; set; } = [];

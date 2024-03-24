@@ -3,6 +3,7 @@ using MainTainSenseAPI.Models;
 using MainTainSenseAPI.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.ContentModel;
 using System.Data.Common;
 
 namespace MainTainSenseAPI.Controllers
@@ -13,6 +14,8 @@ namespace MainTainSenseAPI.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public YesNo IsActive { get; private set; }
 
         public AssetTypeController(ILogger<AssetTypeController> logger, IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
             : base(logger, configuration, httpContextAccessor)
@@ -86,6 +89,7 @@ namespace MainTainSenseAPI.Controllers
             {
                 AssetTypeName = assetTypeViewModel.AssetTypeName,
                 AssetTypeDescription = assetTypeViewModel.AssetTypeDescription,
+                IsActive = assetTypeViewModel.IsActive,
                 LastUpdated = DateTime.UtcNow,
                 UpdatedBy = _httpContextAccessor.HttpContext != null
                         ? CurrentUserName(_httpContextAccessor.HttpContext)
@@ -118,9 +122,9 @@ namespace MainTainSenseAPI.Controllers
 
         // PUT: api/Asset/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAssetType(int id, [FromBody] AssetType assettype)
+        public async Task<IActionResult> UpdateAssetType(int id, [FromBody] AssetType model)
         {
-            if (id != assettype.Id)
+            if (id != model.Id)
             {
                 return BadRequest(ModelState);
             }
@@ -130,9 +134,20 @@ namespace MainTainSenseAPI.Controllers
                 return HandleValidationErrors(ModelState);
             }
 
-            _context.Entry(assettype).State = EntityState.Modified;
+            var assetType = await _context.AssetTypes.FirstOrDefaultAsync(a => a.Id == id);
 
-            logger.LogInformation("Asset type Updated: {Name}", assettype.AssetTypeName);
+            if (assetType == null)
+            {
+                return NotFound("Asset type not found");
+            }
+
+            assetType.AssetTypeDescription = model.AssetTypeDescription;
+            assetType.IsActive = model.IsActive;
+            assetType.LastUpdated = DateTime.UtcNow;
+            assetType.UpdatedBy = _httpContextAccessor.HttpContext != null
+                            ? CurrentUserName(_httpContextAccessor.HttpContext)
+                            : "Unknown User";
+            logger.LogInformation("Asset type Updated: {id}", assetType.Id);
             // 4. Save changes
             try
             {
@@ -140,8 +155,8 @@ namespace MainTainSenseAPI.Controllers
             }
             catch (DbException ex)
             {
-                logger.LogError(ex, "Database error while updating asset.");
-                return StatusCode(500, "Error saving updated asset to database.");
+                logger.LogError(ex, "Database error while updating asset type.");
+                return StatusCode(500, "Error saving updated asset type to database.");
             }
 
             return NoContent();

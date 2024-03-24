@@ -4,95 +4,114 @@ using MainTainSenseAPI.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Data.Common;
 
 namespace MainTainSenseAPI.Controllers
 {
 
     public class PermissionsController : BaseController
     {
-        private readonly ApplicationDbContext _context; // Or your relevant data access mechanism
+        private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public PermissionsController(ILogger<PermissionsController> logger, IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
             : base(logger, configuration, httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        // 1. Get all permissions
-        [HttpGet("api/permissions")]
-        public async Task<IActionResult> GetPagedPermissions(int pageNumber = 1, int pageSize = 10)
+        [HttpGet]
+        public async Task<IActionResult> GetPagedPermissions(int pageNumber = 1, int pageSize = 10,
+                int? isActive = null)
         {
             if (pageNumber < 1 || pageSize <= 0)
             {
                 return BadRequest("Invalid page number or page size");
             }
 
-            try
+            IQueryable<Permission> query = _context.Permissions;
+
+            if (isActive.HasValue)
             {
-                var query = _context.Permissions.Select(p => new { p.Id, p.Name, p.Description });
+                bool isActiveBool = isActive.Value == 1;
+                query = query.Where(a => a.IsActive == (isActiveBool ? YesNo.Yes : YesNo.No));
+            }
 
-                int totalCount = await query.CountAsync();
-                int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
-
-                var permissions = await query
+            var locations = await query
                                 .Skip((pageNumber - 1) * pageSize)
                                 .Take(pageSize)
                                 .ToListAsync();
 
-                var response = new PagedResponse<Permission>
-                {
-                    CurrentPage = pageNumber,
-                    PageSize = pageSize,
-                    TotalCount = totalCount,
-                    TotalPages = totalPages,
-                    Items = (IEnumerable<Permission>)permissions
-                };
-
-                return Ok(response);
-
-            }
-            catch (DbUpdateException ex)
-            {
-                return HandleDatabaseException(ex); // Handle database errors
-            }
-            catch (Exception ex)
-            {
-                  // Log the exception for debugging
-                  logger.LogError(ex, "Error fetching paged permissions");
-                  return StatusCode(500, "A database error occurred.");
-
-            }
+            return Ok(locations);
         }
 
-        // 2. Create a new permission
-        [HttpPost("api/permissions")]
-        public async Task<IActionResult> CreatePermission([FromBody] PermissionsViewModel model)
+        // Get Permissions by ID
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPermissions(int id)
+        {
+            var location = await _context.Permissions.FindAsync(id);
+
+            if (location == null)
+            {
+                return NotFound("Permissions not found");
+            }
+
+            return Ok(location);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePermissions([FromBody] PermissionsViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var permission = new Permission
+            var userpermission = new Permission
             {
                 Name = model.Name,
-                Description = model.Description
+                Description = model.Description,
+
+                IsActive = model.IsActive,
+                LastUpdated = DateTime.UtcNow,
+                UpdatedBy = _httpContextAccessor.HttpContext != null
+                        ? CurrentUserName(_httpContextAccessor.HttpContext)
+                        : "Unknown User"
             };
-
-            _context.Permissions.Add(permission);
-            await _context.SaveChangesAsync();
-
-            logger.LogInformation ("Permission created: {Name}", permission.Name); // Log
-            return CreatedAtAction(nameof(GetPagedPermissions), new { id = permission.Id }, permission);
-        }
-        [HttpPut("api/permissions/{permissionId}")]
-        public async Task<IActionResult> UpdatePermission(int permissionId, [FromBody] PermissionsViewModel model)
-        {
-            // 1. Find the existing permission
-            var permission = await _context.Permissions.FindAsync(permissionId);
-            if (permission == null)
+            try
             {
-                return NotFound("Permission not found");
+                _context.Permissions.Add(userpermission);
+                await _context.SaveChangesAsync();
+
+                logger.LogInformation("Permissions created with ID: {id}", userpermission.Id);
+                return CreatedAtAction(nameof(GetPermissions), new { id = userpermission.Id }, userpermission);
+            }
+            catch (DbException ex)
+            {
+                logger.LogError(ex, "Database error while creating permission.");
+                return StatusCode(500, "Error saving permission to database.");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                var result = HandleConcurrencyError(userpermission.Id);
+                if (result is ViewResult viewResult)
+                {
+                    viewResult.ViewData.Model = model; // Pass the model back to the view
+                    return viewResult;
+                }
+            }
+            logger.LogError("Create Permissions: unhandled error occured");
+            return StatusCode(500, "An unhandled error occurred.");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePermissions(int id, [FromBody] PermissionsViewModel model)
+        {
+
+            if (id != model.Id)
+            {
+                return NotFound("Permissions not found");
             }
 
             // 2. Input Validation (using ModelState)  
@@ -101,25 +120,31 @@ namespace MainTainSenseAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            // 3. Update properties
-            permission.Name = model.Name;
-            permission.Description = model.Description;
-            logger.LogInformation("Permission Updated: {Name}", permission.Name);
+            var entity = await _context.Permissions.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (entity == null)
+            {
+                return NotFound("Permissions not found");
+            }
+
+            entity.Name = model.Name;
+            entity.Description = model.Description;
+            entity.LastUpdated = DateTime.UtcNow;
+            entity.UpdatedBy = _httpContextAccessor.HttpContext != null
+                            ? CurrentUserName(_httpContextAccessor.HttpContext)
+                            : "Unknown User";
+            logger.LogInformation("Permissions Updated: {id}", entity.Id);
             // 4. Save changes
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbException ex)
             {
-                return HandleConcurrencyError(permission.Id); // Delegate to BaseController 
-            }
-            catch (DbUpdateException ex)
-            {
-                return HandleDatabaseException(ex);  // Pass the exception 
+                logger.LogError(ex, "Database error while updating permission.");
+                return StatusCode(500, "Error saving updated permission to database.");
             }
 
-            // 5. Success Response (unchanged)
             return NoContent();
         }
     }

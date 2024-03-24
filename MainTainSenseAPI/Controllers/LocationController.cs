@@ -1,7 +1,10 @@
 ﻿using MainTainSenseAPI.Data;
 using MainTainSenseAPI.Models;
+using MainTainSenseAPI.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.ContentModel;
+using System.Data.Common;
 
 namespace MainTainSenseAPI.Controllers
 {
@@ -10,50 +13,59 @@ namespace MainTainSenseAPI.Controllers
     public class LocationController : BaseController
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public LocationController(ILogger<LocationController> logger, IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
             : base(logger, configuration, httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        // GET: api/Location
         [HttpGet]
-        public async Task<IActionResult> GetPagedLocations(int pageNumber = 1, int pageSize = 10)
+        public async Task<IActionResult> GetPagedLocation(int pageNumber = 1, int pageSize = 10,
+                int? parentLocationId = null,
+                int? buildingId = null,
+                int? isActive = null)
         {
             if (pageNumber < 1 || pageSize <= 0)
             {
                 return BadRequest("Invalid page number or page size");
             }
 
-            int totalCount = await _context.Locations.CountAsync();
-            int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            var query = _context.Locations
+                    .Include(a => a.Building)
+                    .Include(a => a.ParentLocation);
 
-            var locations = await _context.Locations
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .Include(a => a.ChildLocations)
-                .ToListAsync();
-
-            var response = new PagedResponse<Location>
+            if (buildingId.HasValue)
             {
-                CurrentPage = pageNumber,
-                PageSize = pageSize,
-                TotalCount = totalCount,
-                TotalPages = totalPages,
-                Items = (IEnumerable<Location>)locations
-            };
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Location, Location?>)query.Where(a => a.BuildingId == buildingId.Value);
+            }
 
-            return Ok(response);
+            if (parentLocationId.HasValue)
+            {
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Location, Location?>)query.Where(a => a.ParentLocationId == parentLocationId.Value);
+            }
+
+            if (isActive.HasValue)
+            {
+                bool isActiveBool = isActive.Value == 1;
+                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Location, Location?>)query.Where(a => a.IsActive == (isActiveBool ? YesNo.Yes : YesNo.No));
+            }
+
+            var locations = await query
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
+
+           return Ok(locations); 
         }
 
-        // GET: api/Location/5
+        // Get Location by ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetLocation(int id)
         {
-            var location = await _context.Locations
-                .Include(a => a.ChildLocations)
-                .FirstOrDefaultAsync(a => a.Id == id);
+            var location = await _context.Locations.FindAsync(id);
 
             if (location == null)
             {
@@ -63,55 +75,93 @@ namespace MainTainSenseAPI.Controllers
             return Ok(location);
         }
 
-        // POST: api/Location
         [HttpPost]
-        public async Task<IActionResult> CreateLocation([FromBody] Location location)
+        public async Task<IActionResult> CreateLocation([FromBody] LocationViewModel model)
         {
             if (!ModelState.IsValid)
-            {
-                return HandleValidationErrors(ModelState); // Handle validation errors in BaseController
-            }
-
-            _context.Locations.Add(location);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetLocation), new { id = location.Id }, location);
-        }
-
-        // PUT: api/Location/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateLocation(int id, [FromBody] Location location)
-        {
-            if (id != location.Id)
             {
                 return BadRequest(ModelState);
             }
 
-            if (!ModelState.IsValid)
+            var location = new Location
             {
-                return HandleValidationErrors(ModelState);
+                LocationName = model.LocationName,
+                LocationDescription = model.LocationDescription,
+                LocationPath = model.LocationPath,
+                
+                IsActive = model.IsActive,
+                LastUpdated = DateTime.UtcNow,
+                UpdatedBy = _httpContextAccessor.HttpContext != null
+                        ? CurrentUserName(_httpContextAccessor.HttpContext)
+                        : "Unknown User"
+            };
+            try
+            {
+                _context.Locations.Add(location);
+                await _context.SaveChangesAsync();
+
+                logger.LogInformation("Location created with ID: {id}", location.Id);
+                return CreatedAtAction(nameof(GetLocation), new { id = location.Id }, location);
+            }
+            catch (DbException ex)
+            {
+                logger.LogError(ex, "Database error while creating location.");
+                return StatusCode(500, "Error saving location to database.");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                var result = HandleConcurrencyError(location.Id);
+                if (result is ViewResult viewResult)
+                {
+                    viewResult.ViewData.Model = model; // Pass the model back to the view
+                    return viewResult;
+                }
+            }
+            logger.LogError("Create Location: unhandled error occured");
+            return StatusCode(500, "An unhandled error occurred.");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateLocation(int id, [FromBody] LocationViewModel model)
+        {
+
+            if (id != model.Id)
+            {
+                return NotFound("Location not found");
             }
 
-            _context.Entry(location).State = EntityState.Modified;
+            // 2. Input Validation (using ModelState)  
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            logger.LogInformation("Location Updated: {Name}", location.LocationName);
+            var entity = await _context.Locations.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (entity == null)
+            {
+                return NotFound("Location not found");
+            }
+
+            entity.LocationName = model.LocationName;
+            entity.LocationDescription = model.LocationDescription;
+            entity.LastUpdated = DateTime.UtcNow;
+            entity.UpdatedBy = _httpContextAccessor.HttpContext != null
+                            ? CurrentUserName(_httpContextAccessor.HttpContext)
+                            : "Unknown User";
+            logger.LogInformation("Location Updated: {LocationName}", entity.Id);
             // 4. Save changes
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbException ex)
             {
-                return HandleConcurrencyError(location.Id); // Delegate to BaseController 
-            }
-            catch (DbUpdateException ex)
-            {
-                return HandleDatabaseException(ex);  // Pass the exception 
+                logger.LogError(ex, "Database error while updating location.");
+                return StatusCode(500, "Error saving updated location to database.");
             }
 
-            // 5. Success Response (unchanged)
             return NoContent();
         }
-
     }
 }

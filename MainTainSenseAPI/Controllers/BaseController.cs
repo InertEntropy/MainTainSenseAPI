@@ -14,21 +14,31 @@ namespace MainTainSenseAPI.Controllers
     {
         protected readonly ILogger<BaseController> logger;
         protected readonly IConfiguration configuration;
-        public Func<HttpContext, string> CurrentUserName { get; }
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
+        private readonly Lazy<string> _lazyCurrentUserName; // Using Lazy<T>
 
-        // Single Constructor
+        public Func<HttpContext, string> CurrentUserName
+        {
+            get
+            {
+                return (context) => _lazyCurrentUserName.Value;
+            }
+        }
+
         protected BaseController(ILogger<BaseController> logger, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
             : base() // Call the base constructor of ControllerBase
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-
-            // Initialize CurrentUserName
-            CurrentUserName = (context) => {
-                var username = context?.User?.Identity?.Name; // Null-conditional access
-                return username ?? "Unknown User";
-            };
+            this._httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+            _lazyCurrentUserName = new Lazy<string>(() => GetCurrentUserName());
+        }
+    
+        private string GetCurrentUserName()
+        {
+            var username = _httpContextAccessor.HttpContext?.User?.Identity?.Name;
+            return username ?? throw new UnauthorizedAccessException("Unable to determine current user.");
         }
 
         protected string GetBaseUrl()

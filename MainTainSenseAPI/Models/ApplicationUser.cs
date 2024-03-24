@@ -7,11 +7,11 @@ namespace MainTainSenseAPI.Models
     {
         [Required]
         [StringLength(20)]
-        public string FirstName { get; set; } = "First Name";
+        public string? FirstName { get; set; }
 
         [Required]
         [StringLength(20)]
-        public string LastName { get; set; } = "Last Name";
+        public string? LastName { get; set; }
 
         [Required]
         public int JobTitleId { get; set; }

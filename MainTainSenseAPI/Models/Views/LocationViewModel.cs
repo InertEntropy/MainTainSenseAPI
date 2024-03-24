@@ -2,7 +2,7 @@
 
 namespace MainTainSenseAPI.Models.Views
 {
-    public class LocationViewModel
+    public class LocationViewModel : BaseViewModels
     {
         public int Id { get; set; }
 
@@ -13,14 +13,15 @@ namespace MainTainSenseAPI.Models.Views
         [Required]
         public string? LocationDescription { get; set; }
 
-        public int? BuildingId { get; set; }
+        [Required]
+        public int BuildingId { get; set; }
+        public IEnumerable<SelectListItem>? AvailableBuildings { get; set; }
 
         public string? LocationPath { get; set; }
 
-        public int? ParentLocationId { get; set; }
+        [Required]
+        public int ParentLocationId { get; set; }
+        public IEnumerable<SelectListItem>? AvailableParentLocations { get; set; }
 
-        public virtual Building? Building { get; set; }
-
-        public virtual Location? ParentLocation { get; set; }
     }
 }

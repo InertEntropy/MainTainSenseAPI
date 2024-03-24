@@ -23,5 +23,5 @@ public partial class Location : BaseModel
 
     public virtual Location? ParentLocation { get; set; }
 
-    public virtual ICollection<Location> ChildLocations { get; set; } = [];  // Use a more descriptive name
+    public virtual ICollection<Location> ChildLocations { get; set; } = [];
 }

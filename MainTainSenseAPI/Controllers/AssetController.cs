@@ -14,6 +14,8 @@ namespace MainTainSenseAPI.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
+        public YesNo IsActive { get; private set; }
+
         public AssetsController(ILogger<AssetsController> logger, IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
             : base(logger, configuration, httpContextAccessor)
         {
@@ -63,27 +65,12 @@ namespace MainTainSenseAPI.Controllers
                 query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Asset, AssetStatus>)query.Where(a => a.IsActive == (isActive.Value == 1 ? YesNo.Yes : YesNo.No));
             }
 
-            var totalCount = await query.CountAsync();
-            int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
-
             var assets = await query
                                 .Skip((pageNumber - 1) * pageSize)
                                 .Take(pageSize)
                                 .ToListAsync();
 
-            var response = new PagedResponse<Asset>
-            {
-                CurrentPage = pageNumber,
-                PageSize = pageSize,
-                TotalCount = totalCount,
-                TotalPages = totalPages,
-                Items = assets,
-                IsActive = assets.FirstOrDefault()?.IsActive == YesNo.Yes ? 1 : 0,
-                LastUpdated = assets.FirstOrDefault()?.LastUpdated,
-                UpdatedBy = assets.FirstOrDefault()?.UpdatedBy
-            };
-
-            return Ok(response);
+            return Ok(assets);
         }
 
         // GET: api/Assets/5
@@ -119,15 +106,15 @@ namespace MainTainSenseAPI.Controllers
             var assetLocation = await _context.Locations.FindAsync(assetViewModel.AssetLocationId);
             var asset = new Asset
             {
-                AssetType = assetType, // Assign the fetched AssetType object
+                AssetType = assetType, 
                 AssetName = assetViewModel.AssetName,
                 Serialnumber = assetViewModel.Serialnumber,
                 Location = assetLocation,
                 Assetstatus = assetStatus,
                 AssetDescription = assetViewModel.AssetDescription,
                 InstallDate = assetViewModel.InstallDate,
-                // BaseModel properties
-                IsActive = YesNo.Yes, // Set as active by default
+
+                IsActive = YesNo.Yes, 
                 LastUpdated = DateTime.UtcNow,
                 UpdatedBy = _httpContextAccessor.HttpContext != null
                             ? CurrentUserName(_httpContextAccessor.HttpContext)
@@ -139,7 +126,7 @@ namespace MainTainSenseAPI.Controllers
                 _context.Assets.Add(asset);
                 await _context.SaveChangesAsync();
 
-                logger.LogInformation("Asset created with ID: {assetId}", asset.Id);
+                logger.LogInformation("Asset created with ID: {AssetName}", asset.Id);
                 return CreatedAtAction(nameof(GetAsset), new { id = asset.Id }, asset);
             }
             catch (DbException ex)
@@ -221,7 +208,11 @@ namespace MainTainSenseAPI.Controllers
             asset.Serialnumber = assetViewModel.Serialnumber;
             asset.AssetDescription = assetViewModel.AssetDescription;
             asset.InstallDate = assetViewModel.InstallDate;
-
+            asset.IsActive = IsActive;
+            asset.LastUpdated = DateTime.UtcNow;
+            asset.UpdatedBy = _httpContextAccessor.HttpContext != null
+                            ? CurrentUserName(_httpContextAccessor.HttpContext)
+                            : "Unknown User";
             try
             {
                 await _context.SaveChangesAsync();
