@@ -1,0 +1,2 @@
+C:\Users\jamie\source\repos\MainTainSense.Data\obj\Debug\MainTainSense.Data.csproj.AssemblyReference.cache
+C:\Users\jamie\source\repos\MainTainSense.Data\obj\Debug\MainTainSense.Data.csproj.CoreCompileInputs.cache

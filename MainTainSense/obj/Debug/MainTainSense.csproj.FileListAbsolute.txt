@@ -1,0 +1,9 @@
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.csproj.AssemblyReference.cache
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.AddAssetForm.resources
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.Forms.CalendarForm.resources
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.Forms.MainTainSenseParent.resources
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.Forms.UserForm.resources
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.Forms.WorkRequestForm.resources
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.Properties.Resources.resources
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.csproj.GenerateResource.cache
+C:\Users\jamie\source\repos\MainTainSense\obj\Debug\MainTainSense.csproj.CoreCompileInputs.cache

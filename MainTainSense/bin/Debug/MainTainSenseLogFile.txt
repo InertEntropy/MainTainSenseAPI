@@ -1,0 +1,4 @@
+2024-03-30 12:45:00.1479|INFO|MainTainSense.PreferencesForm|Primary Color changed to: #FF8080
+2024-03-30 12:45:42.8481|INFO|MainTainSense.PreferencesForm|Preferences updated successfully
+2024-03-30 12:57:04.5124|INFO|MainTainSense.PreferencesForm|Preferences updated successfully
+2024-03-30 12:58:18.5465|INFO|MainTainSense.PreferencesForm|Preferences updated successfully

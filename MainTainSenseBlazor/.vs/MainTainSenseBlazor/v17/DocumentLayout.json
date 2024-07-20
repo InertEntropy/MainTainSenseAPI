@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{17EAF0CD-365F-47F6-9EBB-70D0FF5AFD26}|MainTainSenseBlazor.csproj|c:\\users\\jamie\\source\\repos\\maintainsenseblazor\\pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -63,8 +63,7 @@
               "RelativeToolTip": "Pages\\_Host.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T17:11:40.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T17:11:40.296Z"
             },
             {
               "$type": "Document",
@@ -76,12 +75,11 @@
               "RelativeToolTip": "Pages\\_Layout.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T17:11:33.595Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T17:11:33.595Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\Shared\\MainLayout.razor",
               "RelativeDocumentMoniker": "Shared\\MainLayout.razor",
@@ -89,12 +87,11 @@
               "RelativeToolTip": "Shared\\MainLayout.razor",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-16T16:19:07.445Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T16:19:07.445Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\jamie\\source\\repos\\MainTainSenseBlazor\\App.razor",
               "RelativeDocumentMoniker": "App.razor",
